@@ -1,9 +1,7 @@
 public class Person extends Animal {
 
     // instance vars
-    private boolean haveSeenVel = false;
     private boolean canSeeVelNow = false;
-    private int distanceToVel;
     private int directionToVel;
     private int currentDirection;
 
@@ -18,16 +16,15 @@ public class Person extends Animal {
     int decideMove() {
         canSeeVelNow = false;
 
-        // Look in straight line down all 8 adjacent tiles to see things (velociraptor)
+        // Look in straight line down all 8 adjacent tiles to see Velociraptor
         for (int i = Model.MIN_DIRECTION; i <= Model.MAX_DIRECTION; i++) {
             if (look(i) == Model.VELOCIRAPTOR) {
-                canSeeVelNow = haveSeenVel = true;
+                canSeeVelNow = true;
                 directionToVel = i;
-                distanceToVel = distance(i);
             }
         }
 
-        // if seen velociraptor, Try to move away from line of sight.
+        // if seen Velociraptor, try to break line of sight.
         if (canSeeVelNow) {
             // Try 1st position
             if (canMove((directionToVel + 5) % 8)) {
@@ -59,20 +56,8 @@ public class Person extends Animal {
                 currentDirection = ((directionToVel + 1) % 8);
                 return (currentDirection);
             }
-            /*  // first attempt - not very clean, minus operator would not work (based on Java modulo negatives)
-            *   if (!canMove(currentDirection)) {
-            *       if (canMove(currentDirection+6) % 8) return (currentDirection-2) % 8);
-            *       if (canMove(currentDirection+7) % 8) return (currentDirection-1);
-            *       if (canMove(currentDirection+1)) return (currentDirection+1);
-            *       if (canMove(currentDirection-3)) return (currentDirection-3);
-            *   }
-            */
-
         }
         // if NO velociraptor in sight, stay (assures first sighting advantage)
         else { return Model.STAY; }
-
-        // OLD / given return, just gives a random direction
-        // return random(Model.MIN_DIRECTION, Model.MAX_DIRECTION);
     }
 }

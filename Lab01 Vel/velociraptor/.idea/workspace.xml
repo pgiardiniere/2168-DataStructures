@@ -4,6 +4,7 @@
     <list default="true" id="9d283a44-e8dc-445d-a059-857a6b22d1f3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/velociraptor/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/velociraptor/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/velociraptor/Person.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/velociraptor/Person.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,7 +37,14 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Grader">
+    <configuration name="Grader" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Grader" />
+      <module name="velociraptor" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Hunt" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Hunt" />
       <module name="velociraptor" />
@@ -46,6 +54,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Grader" />
         <item itemvalue="Application.Hunt" />
       </list>
     </recent_temporary>
@@ -61,7 +70,8 @@
       <option name="presentableId" value="Default" />
       <updated>1567198864243</updated>
       <workItem from="1567198865652" duration="638000" />
-      <workItem from="1567526460571" duration="8517000" />
+      <workItem from="1567526460571" duration="9480000" />
+      <workItem from="1567539938964" duration="272000" />
     </task>
     <servers />
   </component>
@@ -73,7 +83,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
