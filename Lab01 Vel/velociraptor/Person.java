@@ -27,10 +27,47 @@ public class Person extends Animal {
             }
         }
 
-        // if seen velociraptor, try move out of line of sight:
+        // if seen velociraptor, Try to move away from line of sight.
         if (canSeeVelNow) {
-            currentDirection = (directionToVel + 5) % 8;
-            return (currentDirection);
+            // Try 1st position
+            if (canMove((directionToVel + 5) % 8)) {
+                currentDirection = ((directionToVel + 5) % 8);
+                return currentDirection;
+            }
+            // Try 2nd position:
+            if (canMove((directionToVel + 3) % 8)) {
+                currentDirection = ((directionToVel + 3) % 8);
+                return currentDirection;
+            }
+            // Try 3rd position:
+            if (canMove((directionToVel + 4) % 8)) {
+                currentDirection = ((directionToVel + 4) % 8);
+                return currentDirection;
+            }
+            // Try 4th position:
+            if (canMove((directionToVel + 6) % 8)) {
+                currentDirection = ((directionToVel + 6) % 8);
+                return currentDirection;
+            }
+            // Try 5th position:
+            if (canMove((directionToVel + 2) % 8)) {
+                currentDirection = ((directionToVel + 2) % 8);
+                return currentDirection;
+            }
+            // Else do 6th position. In trouble if this actually executes --- mainly here as it's necessary for program compilation
+            else {
+                currentDirection = ((directionToVel + 1) % 8);
+                return (currentDirection);
+            }
+            /*  // first attempt - not very clean, minus operator would not work (based on Java modulo negatives)
+            *   if (!canMove(currentDirection)) {
+            *       if (canMove(currentDirection+6) % 8) return (currentDirection-2) % 8);
+            *       if (canMove(currentDirection+7) % 8) return (currentDirection-1);
+            *       if (canMove(currentDirection+1)) return (currentDirection+1);
+            *       if (canMove(currentDirection-3)) return (currentDirection-3);
+            *   }
+            */
+
         }
         // if NO velociraptor in sight, stay (assures first sighting advantage)
         else { return Model.STAY; }
