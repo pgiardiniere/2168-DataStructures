@@ -15,7 +15,6 @@ public class Person extends Animal {
     // person movement, 1 move per turn
     int decideMove() {
         canSeeVelNow = false;
-
         // Look in straight line down all 8 adjacent tiles to see Velociraptor
         for (int i = Model.MIN_DIRECTION; i <= Model.MAX_DIRECTION; i++) {
             if (look(i) == Model.VELOCIRAPTOR) {
@@ -51,13 +50,13 @@ public class Person extends Animal {
                 currentDirection = ((directionToVel + 2) % 8);
                 return currentDirection;
             }
-            // Else do 6th position. In trouble if this actually executes --- mainly here as it's necessary for program compilation
+            // Else try 6th position. In trouble if this actually executes --- mainly here as it's necessary for program compilation
             else {
                 currentDirection = ((directionToVel + 1) % 8);
                 return (currentDirection);
             }
         }
-        // if NO velociraptor in sight, stay (assures first sighting advantage)
+        // if NO Velociraptor in sight, stay (this assures first sighting advantage)
         else { return Model.STAY; }
     }
 }
