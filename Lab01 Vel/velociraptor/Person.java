@@ -8,8 +8,7 @@ public class Person extends Animal {
 
     public Person(Model model, int row, int column) {
         super(model, row, column);
-        currentDirection = Model.random(Model.MIN_DIRECTION,
-                Model.MAX_DIRECTION);
+        currentDirection = Model.MIN_DIRECTION;
     }
 
     // person movement, 1 move per turn
@@ -25,7 +24,14 @@ public class Person extends Animal {
 
         // if seen Velociraptor, try to break line of sight.
         if (canSeeVelNow) {
-            // Try 1st position
+            // Prevent cornering when approached from repeated upper-left visual sighting
+            if ((directionToVel == 7) && (currentDirection == 4)) {
+                if(canMove((directionToVel + 3) % 8)) {
+                    currentDirection = ((directionToVel + 3) % 8);
+                    return currentDirection;
+               }
+            }
+            // Try 1st position.
             if (canMove((directionToVel + 5) % 8)) {
                 currentDirection = ((directionToVel + 5) % 8);
                 return currentDirection;

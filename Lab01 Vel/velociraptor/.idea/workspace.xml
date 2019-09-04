@@ -4,6 +4,8 @@
     <list default="true" id="9d283a44-e8dc-445d-a059-857a6b22d1f3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/velociraptor/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/velociraptor/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/velociraptor/Person.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/velociraptor/Person.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -70,6 +72,7 @@
       <workItem from="1567198865652" duration="638000" />
       <workItem from="1567526460571" duration="9480000" />
       <workItem from="1567539938964" duration="1127000" />
+      <workItem from="1567614318458" duration="2321000" />
     </task>
     <servers />
   </component>
