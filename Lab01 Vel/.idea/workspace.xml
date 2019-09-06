@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ccc5e439-2026-4a17-8151-f42104d6febf" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Lab01 Vel.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/velociraptor/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/velociraptor/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/velociraptor/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/velociraptor/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/velociraptor/out/production/velociraptor/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/velociraptor/out/production/velociraptor/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/velociraptor/out/production/velociraptor/Person.class" beforeDir="false" afterPath="$PROJECT_DIR$/velociraptor/out/production/velociraptor/Person.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,6 +16,7 @@
   <component name="ProjectId" id="1QR6J7d3tvmCFRCqgKpUDqzrB0x" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
   </component>
@@ -72,7 +66,8 @@
       <updated>1567720986624</updated>
       <workItem from="1567720989980" duration="1372000" />
       <workItem from="1567795110622" duration="1001000" />
-      <workItem from="1567800226745" duration="1066000" />
+      <workItem from="1567800226745" duration="2171000" />
+      <workItem from="1567804166929" duration="707000" />
     </task>
     <servers />
   </component>
