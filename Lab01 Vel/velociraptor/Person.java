@@ -24,13 +24,6 @@ public class Person extends Animal {
 
         // if seen Velociraptor, try to break line of sight.
         if (canSeeVelNow) {
-            // Prevent cornering when approached from repeated upper-left visual sighting
-            if ((directionToVel == 7) && (currentDirection == 4)) {
-                if(canMove((directionToVel + 3) % 8)) {
-                    currentDirection = ((directionToVel + 3) % 8);
-                    return currentDirection;
-               }
-            }
             // Try 1st position.
             if (canMove((directionToVel + 5) % 8)) {
                 currentDirection = ((directionToVel + 5) % 8);
@@ -62,7 +55,7 @@ public class Person extends Animal {
                 return (currentDirection);
             }
         }
-        // if NO Velociraptor in sight, stay (this assures first sighting advantage)
+        // No vel sighting
         else { return Model.STAY; }
     }
 }
