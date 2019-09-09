@@ -11,9 +11,20 @@ public class genericsLab02 {
         removeAll(foo);
     }
 
-
-    public static void unique(ArrayList L) {
-
+    // test whether any List entry is repeated in 
+    public static Boolean unique(ArrayList L) {
+        for(int i = 0; i <= L.size(); i++) {
+            Object curEl = L.get(i);
+            for (int j = 0; j <= L.size(); j++) {
+                if (j == i);  // do nothing on position curEl was pulled from
+                else {
+                    if (L.get(j).equals(L.get(i))) {
+                        return false;
+                    }
+                }
+            }
+            return true; // not positioned correctly, but this is the general idea
+        }
     }
 
     public static void allMultiples(ArrayList l) {
