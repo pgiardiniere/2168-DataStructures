@@ -1,5 +1,7 @@
 import java.util.*;
 
+import com.sun.tools.javac.code.Attribute.Array;
+
 public class genericsLab02 {
     private static ArrayList foo = new ArrayList<String>();
 
@@ -39,7 +41,7 @@ public class genericsLab02 {
     }
     // working, but throwing warnings about unchecked conversion
     public static ArrayList allMultiples(ArrayList<Integer> l, int divisor) {
-        ArrayList multiples = new ArrayList<Integer>();
+        ArrayList<Integer> multiples = new ArrayList<Integer>();
         for (int i = 0; i <= l.size() - 1; i++) {
             if (l.get(i) % divisor == 0) 
                 multiples.add(l.get(i)); 
@@ -48,8 +50,15 @@ public class genericsLab02 {
         return multiples;
     }
 
-    public static void allStringsOfSize(ArrayList l) {
-
+    public static ArrayList allStringsOfSize(ArrayList<String> l, Integer len) {
+        String curStr = new String();
+        ArrayList<String> allStrs = new ArrayList<String>();
+        for (int i = 0; i < l.size(); i++) {
+            curStr = l.get(i);
+            if (curStr.length() == len)
+                allStrs.add(curStr);
+        }
+        return allStrs;
     }
 
     public static void tokenize(ArrayList l) {
