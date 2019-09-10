@@ -6,7 +6,7 @@ public class genericsLab02 {
     public static void main(String args[]) {
 
         // make test data: ArrayList of Strings
-        List<String> bar = new ArrayList<>();
+        ArrayList<String> bar = new ArrayList<>();
         bar.add("poop");
         bar.add("second");
         bar.add("third");
@@ -25,19 +25,27 @@ public class genericsLab02 {
         return false;
     }
 
+    // getting OOB Exception here
+
     // test whether any List element is repeated
     public static Boolean unique(ArrayList L) {
-        for(int i = 0; i <= L.size(); i++) {
-            for (int j = 0; j <= L.size(); j++) {
-                // if (elements equal to each other) and (not from same position) return true
-                if ( L.get(i).equals(L.get(j)) && (L.indexOf(i) != L.indexOf(j)) ) return true;
+        for(int i = 0; i <= L.size() - 1; i++) {
+            for (int j = 0; j <= L.size() - 1; j++) {
+                // if (elements equal to each other) and (not from same position) return false
+                if ( L.get(i).equals(L.get(j)) && (L.indexOf(i) != L.indexOf(j)) ) return false; // this isn't working... probably compare is broken
             } 
         }
-        return false;
+        return true;
     }
-
-    public static void allMultiples(ArrayList l) {
-        
+    // working, but throwing warnings about unchecked conversion
+    public static ArrayList allMultiples(ArrayList<Integer> l, int divisor) {
+        ArrayList multiples = new ArrayList<Integer>();
+        for (int i = 0; i <= l.size() - 1; i++) {
+            if (l.get(i) % divisor == 0) 
+                multiples.add(l.get(i)); 
+        }
+        System.out.print(multiples);
+        return multiples;
     }
 
     public static void allStringsOfSize(ArrayList l) {
