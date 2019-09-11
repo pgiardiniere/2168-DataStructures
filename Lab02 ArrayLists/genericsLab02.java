@@ -60,13 +60,15 @@ public class genericsLab02 {
         else return false;
         }
 
-    public static ArrayList tokenize(ArrayList<String> l) {
-        ArrayList<String> tokenized = new ArrayList<String>();
-        for (int i = 0; i < l.size(); i++) {
-            String str = l.get(i);
-            tokenized.add(str.strip());
+
+    public static ArrayList<String> tokenize(String str) {
+        str = str.strip();
+        String[] temp = str.split(" ");
+        ArrayList<String> list = new ArrayList<String>();
+        for (int i = 0; i < temp.length; i++) {
+            list.add(temp[i]);
         }
-        return tokenized;
+        return list;
     }
 
     public static void removeAll(ArrayList<Integer> l, Integer toKill) {
