@@ -55,16 +55,18 @@ public class genericsLab02 {
     }
 
     public static Boolean isPermutation(ArrayList<String> l1, ArrayList<String>l2) {
-        Boolean elMatched = false;
+        // if lists not of same size, cannot be a permutation 
+        if (l1.size() != l2.size()) return false;        
+
+        ArrayList<String> matchedEls = new ArrayList<String>();
         for (int i = 0; i < l1.size(); i++) {
-            // String str1 = l1.get(i);
-            for (int j = 0; j < l2.size(); j++) {
-                
+            for (int j = 0; j < l2.size(); j++)
+                if (l1.get(i).equals(l2.get(j))) matchedEls.add(l1.get(i));
             }
+        if (matchedEls.size() == l1.size()) return true;
+        else return false;
         }
 
-        return true;
-    }
 
     public static ArrayList tokenize(ArrayList<String> l) {
         ArrayList<String> tokenized = new ArrayList<String>();
@@ -75,9 +77,12 @@ public class genericsLab02 {
         return tokenized;
     }
 
-    public static void removeAll(ArrayList l) {
-
+    // strange, it doesn't necessarily remove all the ints equal to the int val in first pass (see screenshot)
+    // OHH --- when I remove, I am skipping indices. that's why it doesn't catch all in first pass
+    public static ArrayList removeAll(ArrayList<Integer> l, Integer toKill) {
+        for (int i = 0; i < l.size(); i++) {
+            if (l.get(i).equals(toKill)) l.remove(i);
+        }
+        return l;
     }
-
-
 }
