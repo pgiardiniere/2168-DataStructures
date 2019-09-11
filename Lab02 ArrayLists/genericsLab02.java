@@ -1,29 +1,16 @@
 import java.util.*;
 
-// import com.sun.tools.javac.code.Attribute.Array;
-
 public class genericsLab02 {
-    private static ArrayList foo = new ArrayList<String>();
 
     public static void main(String args[]) {
 
-        // make test data: ArrayList of Strings
-        ArrayList<String> bar = new ArrayList<>();
-        bar.add("poop");
-        bar.add("second");
-        bar.add("third");
-
-
-        unique(foo);
+        // unique(foo);
         // allMultiples(foo);
         // allStringsOfSize(foo);
-        tokenize(foo);
-        removeAll(foo);
-
-
+        // tokenize(foo);
+        // removeAll(foo);
     }
 
-    // test whether any List element is repeated
     public static Boolean unique(ArrayList L) {
         for(int i = 0; i < L.size(); i++) {
             for (int j = 0; j <= L.size() - 1; j++) {
@@ -67,7 +54,6 @@ public class genericsLab02 {
         else return false;
         }
 
-
     public static ArrayList tokenize(ArrayList<String> l) {
         ArrayList<String> tokenized = new ArrayList<String>();
         for (int i = 0; i < l.size(); i++) {
@@ -77,12 +63,13 @@ public class genericsLab02 {
         return tokenized;
     }
 
-    // strange, it doesn't necessarily remove all the ints equal to the int val in first pass (see screenshot)
-    // OHH --- when I remove, I am skipping indices. that's why it doesn't catch all in first pass
-    public static ArrayList removeAll(ArrayList<Integer> l, Integer toKill) {
-        for (int i = 0; i < l.size(); i++) {
-            if (l.get(i).equals(toKill)) l.remove(i);
+    public static void removeAll(ArrayList<Integer> l, Integer toKill) {
+        ArrayList<Integer> indices = new ArrayList<Integer>();  
+        for (int i = l.size()-1; i >= 0; i--) {
+            if (l.get(i).equals(toKill)) indices.add(l.get(i));
         }
-        return l;
+        for (int i = 0; i < indices.size(); i++) {
+            l.remove(indices.get(i));
+        }
     }
 }
