@@ -29,11 +29,11 @@ public class genericsLab02b {
         allStringsOfSize(strsTwo, 3);
         isPermutation(intsOne, intsTwo);
         
-        // "str" Demonstrates base functionality, "extra" demonstrates extra credit functionality
+        // tokenize() demo -- "str" Demonstrates base functionality, "extra" demonstrates extra credit functionality
         tokenize(str);
         tokenize(extra);
 
-        // after removing all "bar" elements from strsOne, it now is unique
+        // removeAll() demo -- after removing all "bar" elements from strsOne, it now is unique
         unique(strsOne);
         removeAll(strsOne, "bar");
         unique(strsOne);        
