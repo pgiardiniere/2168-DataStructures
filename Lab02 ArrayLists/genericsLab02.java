@@ -38,6 +38,7 @@ public class genericsLab02 {
         removeAll(strsOne, "bar");
         unique(strsOne);        
 
+        System.out.println("job's done.wav");
     }
 
     public static <E> Boolean unique(ArrayList<E> L) {
