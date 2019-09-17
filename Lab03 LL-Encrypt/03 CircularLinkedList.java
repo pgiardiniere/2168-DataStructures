@@ -3,9 +3,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class CircularLinkedList<E> implements Iterable<E> {
-	
+
+	// ICR == In Class Review notes	
+
 	// #########################
-	// Your variables here
+	// Your variables here 
+				//  ICR (can place up top to keep referencing same vars instead of updating separate vars in different methods)
 	// #########################
 
 	Node<E> head;
@@ -24,6 +27,8 @@ public class CircularLinkedList<E> implements Iterable<E> {
 	// be sure to handle out of bounds cases
 	private Node<E> getNode(int index ) {
 
+		// ICR: ohhh so you would just place the for loop in here,
+		// then, by just calling this method, you don't have to have a separate for loop each time you need to iterate through
 		return null;
 	}
 
