@@ -37,8 +37,6 @@ public class genericsLab02 {
         unique(strsOne);
         removeAll(strsOne, "bar");
         unique(strsOne);        
-
-        System.out.println("job's done.wav");
     }
 
     public static <E> Boolean unique(ArrayList<E> L) {
