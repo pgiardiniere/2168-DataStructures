@@ -21,6 +21,7 @@ public class LinkedList {
 
     // add (really, append) a new node
     public static LinkedList add(LinkedList list, int data) {
+        // create new node with passed-in data
         Node newNode = new Node(data);
         newNode.next = null;
 
@@ -32,7 +33,15 @@ public class LinkedList {
             while (last.next != null) { last = last.next; }
             last.next = newNode;
         }
-
         return list;
+    }
+
+    public static void main(String[] args) {
+        LinkedList sll = new LinkedList();
+        sll.add(sll, 1);
+        sll.add(sll, 2);
+        sll.add(sll, 3);
+
+        System.out.println(sll.toString());
     }
 }
