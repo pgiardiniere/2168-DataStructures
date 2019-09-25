@@ -18,15 +18,15 @@ public class CircularLinkedList<E> implements Iterable<E> {
 	// #########################
 	// implement this constructor
 	// #########################
-	public CircularLinkedList() {
+	public CircularLinkedList(E item) {
 
 	}
 
 	// I highly recommend using this helper method
 		// Return Node<E> found at the specified index
 	// be sure to handle out of bounds cases
-	private Node<E> getNode(int index ) {
-
+	private Node<E> getNode(int index) {
+		
 		// ICR: ohhh so you would just place the for loop in here,
 		// then, by just calling this method, you don't have to have a separate for loop each time you need to iterate through
 		return null;
@@ -49,6 +49,9 @@ public class CircularLinkedList<E> implements Iterable<E> {
 		// adding anywhere else
 	// REMEMBER TO INCREMENT THE SIZE
 	public void add(int index, E item){
+		// add to empty list - no elements contained yet
+		if (this.head == null) { CircularLinkedList(item); }
+		
 
 	}
 	
