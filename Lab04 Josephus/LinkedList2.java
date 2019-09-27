@@ -5,7 +5,7 @@ public class LinkedList2 {
     int size;
 
     static class Node {
-        int data;
+        Integer data;
         Node next;
 
         Node(int dat) {
@@ -16,15 +16,70 @@ public class LinkedList2 {
 
     public LinkedList2(Node headNode) {
         head = headNode;
+        head.next = head;
         size = 1;
     }
 
-    public static void main(String[] args) {
-        Node nod1 = new Node(1);
-        LinkedList2 sll = new LinkedList2(nod1);
+    public LinkedList2 append(LinkedList2 sll, int dat) {
+        // walk to end of list
+        Node last = head;
+        do {
+            last = last.next;
+        } while (last != head);
 
-        // WOOT! I PUT A THING IN HEAD! AND PRINTED IT
-        System.out.println(sll.head.data);
+        // append newNode
+        Node newNode = new Node(dat);
+        last.next = newNode;
+        newNode.next = head;
+        size++;
+
+        return sll;
     }
 
+    public String toString() {
+        
+        if (size == 1) { return head.data.toString(); }
+        else {
+            Node currentNode = head;
+            StringBuilder strb = new StringBuilder();
+            do {
+                strb.append(currentNode.data + " ==> ");
+                currentNode = currentNode.next;
+
+            } while (currentNode != head);
+            return strb.toString();
+        }
+    }
+
+    public static void main(String[] args) {
+
+        //              Testing: use preset data
+        int numSoldiers = 5; 
+        int numSkips = 2;
+        int[] soldiers = new int[5];
+        for (int i=0; i < numSoldiers; i++) { soldiers[i] = i + 1; }
+
+
+        /*              Production: Get user input. This stuff works - just tested it. uncomment when ready
+        // Get soldiers[] and interval
+        Scanner inScan = new Scanner(System.in);
+        System.out.println("input num soldiers, hit enter, input num skips");
+        int numSoldiers = inScan.nextInt();
+        int numSkips = inScan.nextInt();
+        int[] soldiers = new int[numSoldiers];
+        for (int i = 0; i < numSoldiers; i++) { soldiers[i] = i + 1; }
+        */
+
+        // Put soldiers[] into a single linked list. init loop at 1 as head already made
+        Node nod1 = new Node(1);
+        LinkedList2 sll = new LinkedList2(nod1);
+        for (int i = 1; i < numSoldiers; i++) { 
+            System.out.println("index " + i + " soldier " +  soldiers[i]);
+            sll.append(sll, soldiers[i]); 
+        }
+
+        System.out.print("\n");
+        System.out.println(sll.head.data);
+        System.out.println(sll.toString());
+    }
 }
