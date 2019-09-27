@@ -20,20 +20,18 @@ public class LinkedList2 {
         size = 1;
     }
 
-    public LinkedList2 append(LinkedList2 sll, int dat) {
-        // walk to end of list
+    public void append(int dat) {        
+        // walk to (almost) end of the list
         Node last = head;
-        do {
+        for (int i = 1; i < size; i++) {
             last = last.next;
-        } while (last != head);
+        }
 
         // append newNode
         Node newNode = new Node(dat);
         last.next = newNode;
         newNode.next = head;
         size++;
-
-        return sll;
     }
 
     public String toString() {
@@ -71,11 +69,11 @@ public class LinkedList2 {
         */
 
         // Put soldiers[] into a single linked list. init loop at 1 as head already made
-        Node nod1 = new Node(1);
+        Node nod1 = new Node(1);                    //  FOR JSHELL LinkedList2.Node nod1 = new LinkedList2.Node(1);
         LinkedList2 sll = new LinkedList2(nod1);
         for (int i = 1; i < numSoldiers; i++) { 
             System.out.println("index " + i + " soldier " +  soldiers[i]);
-            sll.append(sll, soldiers[i]); 
+            sll.append(soldiers[i]); 
         }
 
         System.out.print("\n");
