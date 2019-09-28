@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class LinkedList2 {
+public class LinkedList2<E> implements Iterable<E> {
     Node head;
     int size;
 
@@ -20,7 +20,7 @@ public class LinkedList2 {
         size = 1;
     }
 
-    public void append(int dat) {        
+    public void add(int dat) {        
         // walk to (almost) end of the list
         Node last = head;
         for (int i = 1; i < size; i++) {
@@ -34,8 +34,7 @@ public class LinkedList2 {
         size++;
     }
 
-    public String toString() {
-        
+    public String toString() {        
         if (size == 1) { return head.data.toString(); }
         else {
             Node currentNode = head;
@@ -50,13 +49,11 @@ public class LinkedList2 {
     }
 
     public static void main(String[] args) {
-
         //              Testing: use preset data
         int numSoldiers = 5; 
         int numSkips = 2;
         int[] soldiers = new int[5];
         for (int i=0; i < numSoldiers; i++) { soldiers[i] = i + 1; }
-
 
         /*              Production: Get user input. This stuff works - just tested it. uncomment when ready
         // Get soldiers[] and interval
@@ -73,11 +70,45 @@ public class LinkedList2 {
         LinkedList2 sll = new LinkedList2(nod1);
         for (int i = 1; i < numSoldiers; i++) { 
             System.out.println("index " + i + " soldier " +  soldiers[i]);
-            sll.append(soldiers[i]); 
+            sll.add(soldiers[i]); 
         }
 
         System.out.print("\n");
         System.out.println(sll.head.data);
         System.out.println(sll.toString());
     }
+
+
+    // Iterable implementation:::
+
+    public Iterator<E> iterator() {
+        return new ListIterator<E>;
+    }
+
+    private class ListIterator<E> implements Iterator<E> {
+        Node<E> nextItem; 
+        Node<E> prev;
+        int index;
+
+        @SuppressWarnings("unchecked")
+        public ListIterator() {
+            nextItem = (Node<E>) head;
+            index = 0;
+        }
+
+        // Circular linked list. It always hasNext.
+        public boolean hasNext() {
+            return true;
+        }
+
+        public E next() {
+            
+        }
+
+        public void remove() {
+            
+        }
+
+    }
+
 }
