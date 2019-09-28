@@ -102,11 +102,11 @@ public class LinkedList2<E> implements Iterable<E> {
         }
 
         public E next() {
-            
+            E.
         }
 
         public void remove() {
-            
+
         }
 
     }
