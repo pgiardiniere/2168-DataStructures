@@ -1,14 +1,16 @@
 import java.util.*;
 
-public class LinkedList2<E> implements Iterable<E> {
-    Node head;
+@SuppressWarnings("unchecked")
+
+public class LinkedList2<E> { // implements Iterable<E>
+    Node<E> head;
     int size;
 
-    static class Node {
-        Integer data;
+    static class Node<E> {
+        E data;
         Node next;
 
-        Node(int dat) {
+        Node(E dat) {
             data = dat;
             next = null;
         }
@@ -20,18 +22,25 @@ public class LinkedList2<E> implements Iterable<E> {
         size = 1;
     }
 
-    public void add(int dat) {        
+    public void add(E dat) {        
         // walk to (almost) end of the list
         Node last = head;
-        for (int i = 1; i < size; i++) {
-            last = last.next;
+        for (int i = 1; i < size; i++) { 
+            last = last.next; 
         }
-
         // append newNode
         Node newNode = new Node(dat);
         last.next = newNode;
         newNode.next = head;
         size++;
+    }
+
+    public void add(int index, E dat) {
+
+    }
+
+    public E remove(int index) {
+        return null;
     }
 
     public String toString() {        
@@ -79,12 +88,12 @@ public class LinkedList2<E> implements Iterable<E> {
     }
 
 
-    // Iterable implementation:::
-
+    // LinkedList2 - method to create ListIterator in class:::
     public Iterator<E> iterator() {
-        return new ListIterator<E>;
+        return new ListIterator<E>();
     }
 
+    // ListIterator implementation
     private class ListIterator<E> implements Iterator<E> {
         Node<E> nextItem; 
         Node<E> prev;
@@ -102,11 +111,21 @@ public class LinkedList2<E> implements Iterable<E> {
         }
 
         public E next() {
-            E.
+            prev =  nextItem;
+            nextItem = nextItem.next;
+            index =  (index + 1) % size;
+            return prev.data;
         }
 
         public void remove() {
-
+            int target;
+            if(nextItem == head) {
+                target = size - 1;
+            } else{ 
+                target = index - 1;
+                index--;
+            }
+            LinkedList2.this.remove(target);
         }
 
     }
