@@ -59,8 +59,11 @@ public class LinkedList2<E> implements Iterable<E>{
         if (index < 0 || index >= size) { throw new IndexOutOfBoundsException(Integer.toString(index)); }        
         Node temp = head;
         // remove node at head
-        if (index == 0) {    
-            head = head.next;
+        if (index == 0) {
+            Node prev = head;
+            while (prev.next != head) { prev = prev.next; }
+            head = temp.next;
+            prev.next = head;
             size--;
             return temp;
         }
@@ -98,9 +101,9 @@ public class LinkedList2<E> implements Iterable<E>{
 
 
         //              JOSEPHUS: preset data mode.
-        int numSoldiers = 5; 
+        int numSoldiers = 13; 
         int numSkips = 2;
-        int[] soldiers = new int[5];
+        int[] soldiers = new int[numSoldiers];
         for (int i=0; i < numSoldiers; i++) { soldiers[i] = i + 1; }
 
         /*              JOSEPHUS: user-input mode.
@@ -119,13 +122,11 @@ public class LinkedList2<E> implements Iterable<E>{
             sll.add(soldiers[i]); 
         }
 
-        System.out.print("\n");
-        System.out.println(sll.toString());
-
+        /*
         // ############### demonstrate all edge-cases ####################
         // ############### addition ###############
         // add at end
-        System.out.print("\n");
+        System.out.print("\nDemonstrate Addition \n");
         sll.add(numSoldiers - 1, 6);
         System.out.println(sll.toString());
         // add at head
@@ -137,7 +138,7 @@ public class LinkedList2<E> implements Iterable<E>{
 
         // ############### removal ###############
         // remove at end
-        System.out.print("\n");
+        System.out.print("\nDemonstrate Removal \n");
         sll.remove(7);
         System.out.println(sll.toString());
         // remove at head 
@@ -148,14 +149,48 @@ public class LinkedList2<E> implements Iterable<E>{
         System.out.println(sll.toString());
 
 
-        // demonstrate traversal & removal with iterator()
-        
-
-        // demonstrate removal utilizing iterator()
-
-
+        // demonstrate traversal with iterator
+        System.out.print("\nDemonstrate ListIterator implementation \n");
+        Iterator testIter = sll.iterator();
+        System.out.println(testIter.next());
+        System.out.println(testIter.next());
+        System.out.println(testIter.next() + "\n");
+        */
 
         // ###############      end demonstration     ####################
+        
+        // vars: numSoldiers -- 5
+        //       numSkips ----- 2
+        //  JOSEPHUS: remove every k'th soldier using iterator remove()
+        System.out.println("Core Jospehus Demonstration: ");
+        System.out.println(sll.toString());
+
+        
+        
+        Iterator iter = sll.iterator();
+        /*
+        iter.next();
+        iter.next();
+        iter.remove();
+        System.out.println(sll.toString());
+        
+        System.out.println(iter.next());
+        System.out.println(iter.next());
+        iter.remove();
+        System.out.println(sll.toString());
+
+        System.out.println(iter.next());
+        System.out.println(iter.next());
+        iter.remove();
+        System.out.println(sll.toString());        
+        */
+
+        while (numSoldiers > 2) {
+            for (int i = 0; i < numSkips; i++) { iter.next(); }
+            iter.remove();
+            System.out.println(sll.toString());
+            numSoldiers--;
+        }        
     }
 
 
@@ -189,15 +224,14 @@ public class LinkedList2<E> implements Iterable<E>{
 
         public void remove() {
             int target;
-            if(nextItem == head) {
+            if (nextItem == head) {
                 target = size - 1;
-            } else{ 
+            } 
+            else { 
                 target = index - 1;
                 index--;
             }
             LinkedList2.this.remove(target);
         }
-
     }
-
 }
