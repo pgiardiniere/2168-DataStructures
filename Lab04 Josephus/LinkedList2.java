@@ -98,8 +98,6 @@ public class LinkedList2<E> implements Iterable<E>{
     }
 
     public static void main(String[] args) {
-
-
         //              JOSEPHUS: preset data mode.
         int numSoldiers = 13; 
         int numSkips = 2;
@@ -159,32 +157,11 @@ public class LinkedList2<E> implements Iterable<E>{
 
         // ###############      end demonstration     ####################
         
-        // vars: numSoldiers -- 5
-        //       numSkips ----- 2
         //  JOSEPHUS: remove every k'th soldier using iterator remove()
         System.out.println("Core Jospehus Demonstration: ");
         System.out.println(sll.toString());
-
-        
         
         Iterator iter = sll.iterator();
-        /*
-        iter.next();
-        iter.next();
-        iter.remove();
-        System.out.println(sll.toString());
-        
-        System.out.println(iter.next());
-        System.out.println(iter.next());
-        iter.remove();
-        System.out.println(sll.toString());
-
-        System.out.println(iter.next());
-        System.out.println(iter.next());
-        iter.remove();
-        System.out.println(sll.toString());        
-        */
-
         while (numSoldiers > 2) {
             for (int i = 0; i < numSkips; i++) { iter.next(); }
             iter.remove();
@@ -192,7 +169,6 @@ public class LinkedList2<E> implements Iterable<E>{
             numSoldiers--;
         }        
     }
-
 
     // LinkedList2 - method to create ListIterator in class:::
     public Iterator<E> iterator() {
