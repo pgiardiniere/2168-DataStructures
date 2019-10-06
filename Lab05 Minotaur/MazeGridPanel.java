@@ -22,8 +22,39 @@ public class MazeGridPanel extends JPanel {
 		Cell finish = maze[rows - 1][cols - 1];
 		finish.setBackground(Color.RED);
 		stack.push(start);
-
-		// Implement your algorithm here
+		
+		// My implmentation here
+		while (!visited(rows - 1, cols - 1) && !stack.empty() ) {
+			Cell position = stack.peek();
+			// try move EAST
+			if (position.col+1 < cols && !position.eastWall && !visited(position.row, position.col+1)){
+				position = maze[position.row][position.col + 1];
+				position.setBackground(Color.GREEN);
+				stack.push(position);
+			}
+			// else try move SOUTH
+			else if (position.row+1 < rows && !position.southWall && !visited(position.row+1, position.col)) {
+				position = maze[position.row + 1][position.col];
+				position.setBackground(Color.GREEN);
+				stack.push(position);
+			}
+			// else try move WEST
+			else if (position.col-1 > 0 && !position.westWall && !visited(position.row, position.col-1)) {
+				position = maze[position.row][position.col - 1];
+				position.setBackground(Color.GREEN);
+				stack.push(position);
+			}
+			// else try move NORTH
+			else if (position.row-1 > 0 && !position.northWall && !visited(position.row-1, position.col)) {
+				position = maze[position.row - 1][position.col];
+				position.setBackground(Color.GREEN);
+				stack.push(position);
+			}
+			// else at DEAD END. Back-track
+			else {
+				position = stack.pop();
+			}
+		}
 	}
 
 	public boolean visited(int row, int col) {
