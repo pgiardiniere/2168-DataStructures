@@ -1,7 +1,6 @@
 import java.util.*;
 
 public class ChessGrid {
-	// instance vars
 	private int rows = 8;
 	private int cols = 8;
 	private int[][] board = new int[8][8];
@@ -13,8 +12,8 @@ public class ChessGrid {
 		chess.display();
 
 		// Set a random position to Knight start
-		int initRow = (int) (Math.random()/.125);
-		int initCol = (int) (Math.random()/.125);
+		Integer initRow = (int) (Math.random()/.125);
+		Integer initCol = (int) (Math.random()/.125);
 		chess.board[initRow][initCol] = 1;
 
 		System.out.println("\n    Place Knight");
@@ -25,64 +24,77 @@ public class ChessGrid {
 		Stack<Integer> colStack = new Stack<Integer>();
 		rowStack.push(initRow);
 		colStack.push(initCol);
-		int jumpCount = 1;
+		Integer jumpCount = 1;
 
-		// move knight across board until all 
-		while (chess.hasAnyUnvisited()) {
-			int row = rowStack.peek();
-			int col = colStack.peek();
+		// move knight across board until all positions full
+		while (chess.hasAnyUnvisited() && !rowStack.empty()) {
+			Integer row = rowStack.peek();
+			Integer col = colStack.peek();
 
 			// Try move NNE
-			if (row - 2 > 0 && col + 1 < 7 && chess.board[row - 2][col + 1] == 0) {
+			if (row - 2 >= 0 && col + 1 <= 7 && chess.board[row - 2][col + 1] == 0) {
 				jumpCount++;
-
-				
+				chess.board[row - 2][col + 1] = jumpCount;
+				rowStack.push(row - 2);
+				colStack.push(col + 1);
 			}
-
 			// else try move NEE
-			else if (row - 1 > 0 && col + 2 < 7 && chess.board[row - 1][col + 2] == 0) {
+			else if (row - 1 >= 0 && col + 2 <= 7 && chess.board[row - 1][col + 2] == 0) {
 				jumpCount++;
 				chess.board[row - 1][col + 2] = jumpCount;
+				rowStack.push(row - 1);
+				colStack.push(col + 2);
 			}
-
 			// else try move SEE
-			else if (row + 1 < 7 && col + 2 < 7 && chess.board[row + 1][col + 2] == 0) {
+			else if (row + 1 <= 7 && col + 2 <= 7 && chess.board[row + 1][col + 2] == 0) {
 				jumpCount++;
 				chess.board[row + 1][col + 2] = jumpCount;
+				rowStack.push(row + 1);
+				colStack.push(col + 2);
 			}
 			// else try move SSE
-			else if (row + 2 < 7 && col + 1 < 7 && chess.board[row + 2][col + 1] == 0) {
+			else if (row + 2 <= 7 && col + 1 <= 7 && chess.board[row + 2][col + 1] == 0) {
 				jumpCount++;
 				chess.board[row + 2][col + 1] = jumpCount;
+				rowStack.push(row + 2);
+				colStack.push(col + 1);
 			}
 			// else try move SSW
-			else if (row + 2 < 7 && col - 1 > 0 && chess.board[row + 2][col - 1] == 0) {
+			else if (row + 2 <= 7 && col - 1 >= 0 && chess.board[row + 2][col - 1] == 0) {
 				jumpCount++;
 				chess.board[row + 2][col - 1] = jumpCount;
+				rowStack.push(row + 2);
+				colStack.push(col - 1);
 			}
 			// else try move SWW
-			else if (row + 1 < 7 && col - 2 > 0 && chess.board[row + 1][col - 2] == 0) {
+			else if (row + 1 <= 7 && col - 2 >= 0 && chess.board[row + 1][col - 2] == 0) {
 				jumpCount++;
 				chess.board[row + 1][col - 2] = jumpCount;
+				rowStack.push(row + 1);
+				colStack.push(col - 2);
 			}
 			// else try move NWW
-			else if (row - 1 > 0 && col - 2 > 0 && chess.board[row - 1][col - 2] == 0) {
+			else if (row - 1 >= 0 && col - 2 >= 0 && chess.board[row - 1][col - 2] == 0) {
 				jumpCount++;
 				chess.board[row - 1][col - 2] = jumpCount;
+				rowStack.push(row - 1);
+				colStack.push(col - 2);
 			}
 			// else try move NNW
-			else if (row - 2 > 0 && col - 1 > 0 && chess.board[row - 2][col - 1] == 0) {
+			else if (row - 2 >= 0 && col - 1 >= 0 && chess.board[row - 2][col - 1] == 0) {
 				jumpCount++;
 				chess.board[row - 2][col - 1] = jumpCount;
+				rowStack.push(row - 2);
+				colStack.push(col - 1);
 			}
 			// else, at DEAD END. Back-track
 			else { 
 				rowStack.pop();
 				colStack.pop();
 			}
-
 		}
-
+		System.out.println("\n    Solution achieved in " + Integer.toString((jumpCount)) + " moves.");
+		chess.display();
 	}
 
 	public ChessGrid() {
