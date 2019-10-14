@@ -13,6 +13,16 @@ public class SudokuGrid {
 		sudoku.populate();
 		sudoku.display();
 
+		System.out.println("\n    Test isFilled");
+		System.out.println("\n		" + sudoku.isFilled());
+
+		System.out.println("\n    Solve sudoku board");
+		sudoku.solve();
+		sudoku.display();
+
+		System.out.println("\n    Demonstrate no blanks");
+		System.out.println("\n		" + sudoku.isFilled());
+
 	}
 
 
@@ -50,6 +60,30 @@ public class SudokuGrid {
 					System.out.print("\n"); 
 				}
 			}
+		}
+	}
+
+	public boolean isFilled() {
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < cols; j++) {
+				if (board[i][j] == 0) return false;
+			}
+		}
+		return true;
+	}
+
+	public void solve() {
+		solveNext(board, 0, 0);
+	}
+
+	public boolean solveNext(int[][] grid, int row, int col) {
+		if (this.isFilled()) {
+			return true;
+		}
+
+		else {
+
+
 		}
 	}
 
