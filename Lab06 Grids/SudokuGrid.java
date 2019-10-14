@@ -23,9 +23,6 @@ public class SudokuGrid {
 		sudoku.solve();
 		sudoku.display();
 
-		System.out.println("\n    Demonstrate no blanks");
-		System.out.println("\n		" + sudoku.isFilled());
-
 	}
 
 	public SudokuGrid() {
@@ -36,6 +33,12 @@ public class SudokuGrid {
 		this.curRow = curRow;
 		this.curCol = curCol;
 		this.curTile = curTile;
+
+		for (int i = 0; i < 10; i++) {
+			curRow.add(i);
+			curCol.add(i);
+			curTile.add(i);
+		}
 	}
 
 	public void populate() {
@@ -83,110 +86,131 @@ public class SudokuGrid {
 	}
 
 	public boolean solveNext(int[][] grid, int row, int col) {
-		// update curRow, curCol, curTile variables:
-		this.curUpdate(row, col);
-
-
 		if (this.isFilled()) {
 			return true;
 		}
 
 		// solve current row/col provided. Then recursively call method on next row/col
 		else {
-			return false;
+			// update curRow, curCol, curTile variables:
+			this.curUpdate(row, col);			
 
+			int ninth = (row / 3)*3 + col/3;
+			
+			// Fill in 1 empty space in current tile. (row-col-tile match) 
+			// Foreach valid choice, mark board with choice. if (recursive call) --- then return true
+			if (board[row][col] == 0) {
+				for (int val = 1; val <= 9; val++) {
+					if (!curRow.contains(val) && !curCol.contains(val) && !curTile.contains(val)) { 
+						board[row][col] = val;
+						break;
+					}
+				}
+			}
+
+			System.out.println("\n    Solved step of sudoku board");
+			this.display();			
+
+			if (col != 8) { 
+				col++; 
+			}
+			else {
+				col = 0;
+				row++;
+			}
+			return solveNext(grid, row, col);
 		}
 	}
 
 	public void curUpdate(int row, int col) {
 		// update curRow
-		System.out.println("curRow now:");
 		for (int i = 0; i < cols; i++) {
-			curRow.add(i, board[row][i]);
-			System.out.print(curRow.get(i) + " ");
+			curRow.set(i, board[row][i]);
 		}
+		System.out.println("curRow now:");
+		System.out.println(curRow.toString());
+
 		// update curCol
-		System.out.println("\n" + "curCol now:");
 		for (int i = 0; i < rows; i++) {
-			curRow.add(i, board[i][col]);
-			System.out.println(curRow.get(i));
+			curCol.set(i, board[i][col]);
 		}
+		System.out.println("\n" + "curCol now:");
+		System.out.println(curCol.toString());
 
-		// get curTile ninth (on 0-8 scale):
-		int ninthPosition = (row / 3)*3 + col/3;
-		this.tileUpdate(ninthPosition);
-
-		if (row / 3 == 0) { ninthPosition = 1 + col/3 }
-		else if (row / 3 == 1) {}
 		// update curTile
+		// get Sudoku grid ninth (0-8 scale), feed that ninth's data to curTile ArrayList:
+		int ninthPosition = (row / 3)*3 + col/3;
+		this.curTileUpdate(ninthPosition);
+
 		System.out.println("\n" + "curTile now:");
-		for (int i = 0)
+		System.out.println(curTile.toString());
 
 	}
 
-	public void tileUpdate(int ninth) {
-		// Feed data from rows 0,1,2. + cols 0,1,2
-		// board[i][j]
+	public void curTileUpdate(int ninth) {
 		int tileIter = 0;
 
-		if (ninth <= 2) { 
-			for (int i = 0; i < 2; i++;) {
-				if (ninth == 0) {
-					for (int j = 0; j < 2; j++) {
-						curTile.add(tileIter++, board[i][j])
-					}
-				}
-				if (ninth == 1) {
-				}
-				if (ninth = 2) {
-
-				}
-			}
-		}
 		if (ninth == 0) {
-			for (int i = 0; i <= 2; i++;) {
-
+			for (int i = 0; i <= 2; i++) {
+				for (int j = 0; j <= 2; j++) {
+					curTile.set(tileIter++, board[i][j]);
+				}
 			}
-
 		}
 		if (ninth == 1) {
-			for (int i = 0; i <= 2; i++;) {
-				
+			for (int i = 0; i <= 2; i++) {
+				for (int j = 3; j <= 5; j++) {
+					curTile.set(tileIter++, board[i][j]);
+				}
 			}
 		}
 		if (ninth == 2) {
-			for (int i = 0; i <= 2; i++;) {
-				
+			for (int i = 0; i <= 2; i++) {
+				for (int j = 6; j <= 8; j++) {
+					curTile.set(tileIter++, board[i][j]);
+				}
 			}
 		}
 		if (ninth == 3) {
-			for (int i = 3; i <= 5 ; i++;) {
-				
+			for (int i = 3; i <= 5 ; i++) {
+				for (int j = 0; j <= 2; j++) {
+					curTile.set(tileIter++, board[i][j]);
+				}
 			}
 		}
 		if (ninth == 4) {
-			for (int i = 3; i <= 5 ; i++;) {
-				
+			for (int i = 3; i <= 5 ; i++) {
+				for (int j = 3; j <= 5; j++) {
+					curTile.set(tileIter++, board[i][j]);
+				}
 			}
 		}
 		if (ninth == 5) {
-			for (int i = 3; i <= 5 ; i++;) {
-				
+			for (int i = 3; i <= 5 ; i++) {
+				for (int j = 6; j <= 8; j++) {
+					curTile.set(tileIter++, board[i][j]);
+				}
 			}
 		}
 		if (ninth == 6) {
-			for (int i = 6; i <= 8 ; i++;) {
-				
+			for (int i = 6; i <= 8 ; i++) {
+				for (int j = 0; j <= 2; j++) {
+					curTile.set(tileIter++, board[i][j]);
+				}	
 			}
 		}
 		if (ninth == 7) {
-			for (int i = 6; i <= 8 ; i++;) {
-				
+			for (int i = 6; i <= 8 ; i++) {
+				for (int j = 3; j <= 5; j++) {
+					curTile.set(tileIter++, board[i][j]);
+				}
 			}
 		}
 		if (ninth == 8) {
-			for (int i = 6; i <= 8 ; i++;) {
-				
+			for (int i = 6; i <= 8 ; i++) {
+				for (int j = 6; j <= 8; j++) {
+					curTile.set(tileIter++, board[i][j]);
+				}
 			}
 		}
 	}
