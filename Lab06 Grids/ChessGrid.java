@@ -93,7 +93,7 @@ public class ChessGrid {
 				colStack.pop();
 			}
 		}
-		System.out.println("\n    Solution achieved in " + Integer.toString((jumpCount)) + " moves.");
+		System.out.println("\n    Solution: ");
 		chess.display();
 	}
 

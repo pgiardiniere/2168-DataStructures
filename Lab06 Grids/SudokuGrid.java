@@ -1,7 +1,13 @@
+import java.util.*;
+
 public class SudokuGrid {
 	private int rows = 9;
 	private int cols = 9;
 	private int[][] board = new int[9][9];
+
+	private ArrayList<Integer> curRow = new ArrayList<Integer>(9);
+	private ArrayList<Integer> curCol = new ArrayList<Integer>(9);
+	private ArrayList<Integer> curTile = new ArrayList<Integer>(9);
 
 	public static void main(String[] args) {		
 		SudokuGrid sudoku = new SudokuGrid();
@@ -13,9 +19,6 @@ public class SudokuGrid {
 		sudoku.populate();
 		sudoku.display();
 
-		System.out.println("\n    Test isFilled");
-		System.out.println("\n		" + sudoku.isFilled());
-
 		System.out.println("\n    Solve sudoku board");
 		sudoku.solve();
 		sudoku.display();
@@ -25,11 +28,14 @@ public class SudokuGrid {
 
 	}
 
-
 	public SudokuGrid() {
 		this.rows = rows;
 		this.cols = cols;
 		this.board = board;
+
+		this.curRow = curRow;
+		this.curCol = curCol;
+		this.curTile = curTile;
 	}
 
 	public void populate() {
@@ -77,13 +83,111 @@ public class SudokuGrid {
 	}
 
 	public boolean solveNext(int[][] grid, int row, int col) {
+		// update curRow, curCol, curTile variables:
+		this.curUpdate(row, col);
+
+
 		if (this.isFilled()) {
 			return true;
 		}
 
+		// solve current row/col provided. Then recursively call method on next row/col
 		else {
+			return false;
 
+		}
+	}
 
+	public void curUpdate(int row, int col) {
+		// update curRow
+		System.out.println("curRow now:");
+		for (int i = 0; i < cols; i++) {
+			curRow.add(i, board[row][i]);
+			System.out.print(curRow.get(i) + " ");
+		}
+		// update curCol
+		System.out.println("\n" + "curCol now:");
+		for (int i = 0; i < rows; i++) {
+			curRow.add(i, board[i][col]);
+			System.out.println(curRow.get(i));
+		}
+
+		// get curTile ninth (on 0-8 scale):
+		int ninthPosition = (row / 3)*3 + col/3;
+		this.tileUpdate(ninthPosition);
+
+		if (row / 3 == 0) { ninthPosition = 1 + col/3 }
+		else if (row / 3 == 1) {}
+		// update curTile
+		System.out.println("\n" + "curTile now:");
+		for (int i = 0)
+
+	}
+
+	public void tileUpdate(int ninth) {
+		// Feed data from rows 0,1,2. + cols 0,1,2
+		// board[i][j]
+		int tileIter = 0;
+
+		if (ninth <= 2) { 
+			for (int i = 0; i < 2; i++;) {
+				if (ninth == 0) {
+					for (int j = 0; j < 2; j++) {
+						curTile.add(tileIter++, board[i][j])
+					}
+				}
+				if (ninth == 1) {
+				}
+				if (ninth = 2) {
+
+				}
+			}
+		}
+		if (ninth == 0) {
+			for (int i = 0; i <= 2; i++;) {
+
+			}
+
+		}
+		if (ninth == 1) {
+			for (int i = 0; i <= 2; i++;) {
+				
+			}
+		}
+		if (ninth == 2) {
+			for (int i = 0; i <= 2; i++;) {
+				
+			}
+		}
+		if (ninth == 3) {
+			for (int i = 3; i <= 5 ; i++;) {
+				
+			}
+		}
+		if (ninth == 4) {
+			for (int i = 3; i <= 5 ; i++;) {
+				
+			}
+		}
+		if (ninth == 5) {
+			for (int i = 3; i <= 5 ; i++;) {
+				
+			}
+		}
+		if (ninth == 6) {
+			for (int i = 6; i <= 8 ; i++;) {
+				
+			}
+		}
+		if (ninth == 7) {
+			for (int i = 6; i <= 8 ; i++;) {
+				
+			}
+		}
+		if (ninth == 8) {
+			for (int i = 6; i <= 8 ; i++;) {
+				
+			}
 		}
 	}
 
