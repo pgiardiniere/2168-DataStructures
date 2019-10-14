@@ -34,10 +34,10 @@ public class SudokuGrid {
 		this.curCol = curCol;
 		this.curTile = curTile;
 
-		for (int i = 0; i < 10; i++) {
-			curRow.add(i);
-			curCol.add(i);
-			curTile.add(i);
+		for (int i = 0; i < 9; i++) {
+			curRow.add(0);
+			curCol.add(0);
+			curTile.add(0);
 		}
 	}
 
@@ -92,13 +92,8 @@ public class SudokuGrid {
 
 		// solve current row/col provided. Then recursively call method on next row/col
 		else {
-			// update curRow, curCol, curTile variables:
 			this.curUpdate(row, col);			
-
-			int ninth = (row / 3)*3 + col/3;
 			
-			// Fill in 1 empty space in current tile. (row-col-tile match) 
-			// Foreach valid choice, mark board with choice. if (recursive call) --- then return true
 			if (board[row][col] == 0) {
 				for (int val = 1; val <= 9; val++) {
 					if (!curRow.contains(val) && !curCol.contains(val) && !curTile.contains(val)) { 
@@ -111,13 +106,9 @@ public class SudokuGrid {
 			System.out.println("\n    Solved step of sudoku board");
 			this.display();			
 
-			if (col != 8) { 
-				col++; 
-			}
-			else {
-				col = 0;
-				row++;
-			}
+			if (col != 8) { col++; }
+			else 		  { col = 0; row++; }
+			
 			return solveNext(grid, row, col);
 		}
 	}
