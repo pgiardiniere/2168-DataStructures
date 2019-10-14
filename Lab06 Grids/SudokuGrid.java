@@ -104,12 +104,14 @@ public class SudokuGrid {
 			}
 
 			System.out.println("\n    Solved step of sudoku board");
-			this.display();			
+			this.display();
 
-			if (col != 8) { col++; }
-			else 		  { col = 0; row++; }
+			if (col != 8) { return (solveNext(grid, row, col + 1)); }
+			else { col = 0; return (solveNext(grid, row+1, col)); }
 			
-			return solveNext(grid, row, col);
+			//if (col != 8) { col++; }
+			//else 		  { col = 0; row++; }
+			//return solveNext(grid, row, col);
 		}
 	}
 
