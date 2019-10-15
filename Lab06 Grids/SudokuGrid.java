@@ -1,3 +1,4 @@
+// Hackey-First implementation. Doesn't work. FOR REFERENCE ONLY.
 import java.util.*;
 
 public class SudokuGrid {
@@ -90,25 +91,35 @@ public class SudokuGrid {
 			return true;
 		}
 
-		// solve current row/col provided. Then recursively call method on next row/col
 		else {
+			// advance position to next (empty) place on board
+			while (board[row][col] != 0) {
+				if (col != 8) { col = col + 1; }
+				else { col = 0; row = row + 1; }
+			}
+
 			this.curUpdate(row, col);			
 			
-			if (board[row][col] == 0) {
-				for (int val = 1; val <= 9; val++) {
-					if (!curRow.contains(val) && !curCol.contains(val) && !curTile.contains(val)) { 
-						board[row][col] = val;
-						break;
-					}
+			// if spot was a 'hint' location, skip it
+			//if (board[row][col] != 0) {
+			//	if (col != 8) { return (solveNext(grid, row, col + 1)); }
+			//	else { col = 0; return (solveNext(grid, row + 1, col)); }
+			//}
+
+			// else spot was not a 'hint' location, solve it
+			
+			for (int val = 1; val <= 9; val++) {
+				if (!curRow.contains(val) && !curCol.contains(val) && !curTile.contains(val)) { 
+					board[row][col] = val;
+
+					break;
 				}
 			}
 
 			System.out.println("\n    Solved step of sudoku board");
 			this.display();
 
-			if (col != 8) { return (solveNext(grid, row, col + 1)); }
-			else { col = 0; return (solveNext(grid, row+1, col)); }
-			
+			return solveNext(grid, row, col);			
 			//if (col != 8) { col++; }
 			//else 		  { col = 0; row++; }
 			//return solveNext(grid, row, col);
