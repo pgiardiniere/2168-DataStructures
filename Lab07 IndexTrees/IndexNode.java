@@ -1,5 +1,3 @@
-package index;
-
 import java.util.List;
 
 public class IndexNode  {
@@ -10,8 +8,7 @@ public class IndexNode  {
 	
 	IndexNode left;
 	IndexNode right;
-	
-	
+		
 	// Constructors
 	// Constructor should take in a word and a line number
 	// it should initialize the list and set occurrences to 1

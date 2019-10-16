@@ -1,20 +1,21 @@
-package index;
-
-
-import edu.temple.datatypes.BinaryTree;
-
 // Your class. Notice how it has no generics.
 // This is because we use generics when we have no idea what kind of data we are getting
 // Here we know we are getting two pieces of data:  a string and a line number
 public class IndexTree extends BinaryTree {
-
-	// This is your root 
-	// again, your root does not use generics because you know your nodes
-	// hold strings, an int, and a list of integers
-	private IndexNode root;
 	
-	// Make your constructor
-	// It doesn't need to do anything
+	// This is your root
+	private Node root;
+	
+	IndexTree() {
+		super();
+	}
+	IndexTree(String word) {
+		super(new Node(word));
+	}
+	IndexTree(String word, BinaryTree leftSubTree, BinaryTree rightSubTree) {
+		super(word, leftSubTree, rightSubTree); 
+	}
+
 	
 	// complete the methods below
 	
@@ -30,9 +31,9 @@ public class IndexTree extends BinaryTree {
 	// your recursive method for add
 	// Think about how this is slightly different the the regular add method
 	// When you add the word to the index, if it already exists, 
-	// you want to  add it to the IndexNode that already exists
-	// otherwise make a new indexNode
-	private IndexNode add(IndexNode root, String word, int lineNumber){
+	// you want to  add it to the Node that already exists
+	// otherwise make a new Node
+	private Node add(Node root, String word, int lineNumber){
 		return null;
 	}
 	
@@ -53,7 +54,7 @@ public class IndexTree extends BinaryTree {
 	// your recursive case
 	// remove the word and all the entries for the word
 	// This should be no different than the regular technique.
-	private IndexNode delete(IndexNode root, String word){
+	private Node delete(Node root, String word){
 		return null;
 	}
 	
@@ -67,8 +68,15 @@ public class IndexTree extends BinaryTree {
 	}
 	
 	public static void main(String[] args){
-		IndexTree index = new IndexTree();
+		IndexTree leftSub = new IndexTree("LEEEFT");
+		IndexTree rightSub = new IndexTree("RIIGHT");
+		IndexTree iTree = new IndexTree("ROOOOT", leftSub, rightSub);
 		
+		System.out.println("hey there sexy");
+		System.out.println("inOrder :");
+		System.out.println(iTree.toString());
+
+		System.out.println(leftSub.toString());
 		// add all the words to the tree
 		
 		// print out the index
