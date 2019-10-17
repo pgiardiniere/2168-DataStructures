@@ -39,7 +39,7 @@ public class BinaryTree	 {
 	}
 
 	// get to string location. update stringbuilder with relevant info.
-	private void inOrderTraverse(Node node, int depth, StringBuilder sb) {
+	protected void inOrderTraverse(Node node, int depth, StringBuilder sb) {
 		if (node == null) { 
 			// sb.append("Null\n"); 	// were fed an empty tree - do nothing 
 		} 
@@ -50,9 +50,26 @@ public class BinaryTree	 {
 		}
 	}
 
-	private void inOrderSearch(String searchTerm) {
-		// begin search at root
-		
+	/* 	wrapper method (unused)
+	private boolean inOrderSearch(String searchTerm) {
+		boolean passthru = inOrderSearch(searchTerm, root);
+		return passthru;
+	}
+	*/
+
+	protected boolean inOrderSearch(String searchTerm, Node curNode) {
+		if (curNode == null || searchTerm == "") { } // do nothing if null node (end of curTree)
+
+		else {
+			inOrderSearch(searchTerm, curNode.left);
+			if (searchTerm.equals(curNode.word)) { 
+				System.out.println(curNode.toString());
+				return true;
+			}		// THEN it's true, print output to console, increment occurrences
+			inOrderSearch(searchTerm, curNode.right);
+		}
+		// if here, then false
+		return false;
 	}
 
 	// Inner-Class Node
@@ -63,7 +80,6 @@ public class BinaryTree	 {
 		protected Node left;
 		protected Node right;
 
-		// "Constructor should take in a word *** and a line number ***"
 		public Node(String word, int lineIndex) {
 			this.word = word;
 			this.occurrences = 1;

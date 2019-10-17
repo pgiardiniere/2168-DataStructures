@@ -18,10 +18,8 @@ public class IndexTree extends BinaryTree {
 	IndexTree(String word, int index, BinaryTree leftSubTree, BinaryTree rightSubTree) {
 		super(word, index, leftSubTree, rightSubTree); 
 	}
-
 	
-	// complete the methods below
-	
+	// complete the methods below	
 	// this is your wrapper method
 	// it takes in two pieces of data rather than one
 	// call your recursive add method
@@ -45,7 +43,7 @@ public class IndexTree extends BinaryTree {
 	
 	// returns true if the word is in the index
 	public boolean contains(String word){
-		return false;
+		return super.inOrderSearch(word, root);
 	}
 	
 	// call your recursive method
@@ -82,8 +80,15 @@ public class IndexTree extends BinaryTree {
 		System.out.println(leftSub.toString());
 
 
-		// add all the words to the tree
+		System.out.println(iTree.contains("LEEEFT"));
+		System.out.println(iTree.contains("ROOOOT"));
+		System.out.println(iTree.contains("RIIGHT"));
 
+		System.out.println(leftSub.contains("LEEEFT"));
+		System.out.println(leftSub.contains("ROOOOT"));
+
+		// add all the words to the tree
+		/*
 		int curLine = 0;
 		Scanner scanner = new Scanner(new File("dummy.txt"));
 		while (scanner.hasNextLine()) {
@@ -105,6 +110,7 @@ public class IndexTree extends BinaryTree {
 				System.out.print(split.get(i));
 			}
 		}
+		*/
 
 		// print out the index
 		
