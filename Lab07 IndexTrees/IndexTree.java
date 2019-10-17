@@ -85,6 +85,8 @@ public class IndexTree extends BinaryTree {
 		// add all the words to the tree
 
 		// reads file until end, removes formatting and capitals
+		
+		
 		Scanner scanner = new Scanner(new File("dummy.txt"));
 		while (scanner.hasNext()) {
 			String next = scanner.next();
@@ -92,14 +94,27 @@ public class IndexTree extends BinaryTree {
 			System.out.println(next);
 		}
 
-		Scanner scan = new Scanner(new File("dummy.txt"));
-		while (scanner.hasNextLine()) {
-			String nextLine = scanner.nextLine();
-			nextLine = nextLine.toLowerCase().replaceAll("[^a-z0-9]", ""); 	// formatting
-			system.out.println(nextLine);
+		System.out.println("\n");
 
-			String[] split = nextLine.split("\\s+")
-			for 
+		int curLine = 0;
+		Scanner scan = new Scanner(new File("dummy.txt"));
+		while (scan.hasNextLine()) {
+			curLine++;
+			
+			System.out.println("curLine is " + curLine);
+
+			String nextLine = scan.nextLine();
+			nextLine = nextLine.toLowerCase().replaceAll("[^a-z0-9 ]", ""); 	// formatting, WhiteSpace retained
+			System.out.println(nextLine);
+
+			System.out.println("The contents of line, split into String[]");
+
+			String[] split = nextLine.split(" ");
+			for (int i = 0; i < split.length; i++) {
+				System.out.print(split[i] + " ");
+			}
+
+			System.out.println("\n");
 		}
 
 		// print out the index
