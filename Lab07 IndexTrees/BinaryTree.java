@@ -28,7 +28,6 @@ public class BinaryTree	 {
 
 	// TODO: return the word, the number of occurrences, and the lines it appears on.
 	// string must be one line
-
 	// FOR NOW: simply print ALL nodes in format requested:
 	@Override
 	public String toString() {
@@ -78,7 +77,7 @@ public class BinaryTree	 {
 		public String toString() {
 			StringBuilder strb = new StringBuilder();
 			strb.append("Your word " + word + " occurs " + Integer.toString(occurrences) + " times, ");
-			strb.append("at the following indices: " + indices.toString());
+			strb.append("at the following line indices: " + indices.toString());
 			return strb.toString();
 		}
 	}

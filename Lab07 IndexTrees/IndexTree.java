@@ -84,37 +84,26 @@ public class IndexTree extends BinaryTree {
 
 		// add all the words to the tree
 
-		// reads file until end, removes formatting and capitals
-		
-		
-		Scanner scanner = new Scanner(new File("dummy.txt"));
-		while (scanner.hasNext()) {
-			String next = scanner.next();
-			next = next.toLowerCase().replaceAll("[^a-z0-9]", ""); 	// formatting
-			System.out.println(next);
-		}
-
-		System.out.println("\n");
-
 		int curLine = 0;
-		Scanner scan = new Scanner(new File("dummy.txt"));
-		while (scan.hasNextLine()) {
+		Scanner scanner = new Scanner(new File("dummy.txt"));
+		while (scanner.hasNextLine()) {
 			curLine++;
-			
-			System.out.println("curLine is " + curLine);
-
-			String nextLine = scan.nextLine();
+			String nextLine = scanner.nextLine();
 			nextLine = nextLine.toLowerCase().replaceAll("[^a-z0-9 ]", ""); 	// formatting, WhiteSpace retained
-			System.out.println(nextLine);
+			
+			String[] tmp = nextLine.split(" ");
+			ArrayList<String> split = new ArrayList<String>(Arrays.asList(tmp));
 
-			System.out.println("The contents of line, split into String[]");
-
-			String[] split = nextLine.split(" ");
-			for (int i = 0; i < split.length; i++) {
-				System.out.print(split[i] + " ");
+			// special case(?) calling the initial root node... ... ... I think it is yes.
+			if (curLine == 1) {
+				IndexTree root = new IndexTree(split.get(0), curLine);
+				split.remove(0);
 			}
 
-			System.out.println("\n");
+			// TODO NEXT:::: Call 
+			for (int i = 0; i < split.size(); i++) {
+				System.out.print(split.get(i));
+			}
 		}
 
 		// print out the index
