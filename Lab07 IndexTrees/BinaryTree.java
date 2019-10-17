@@ -11,8 +11,8 @@ public class BinaryTree	 {
 		this.root = root;
 	}
 
-	public BinaryTree(String word, BinaryTree leftSubTree, BinaryTree rightSubTree) {
-		root = new Node(word);
+	public BinaryTree(String word, int index, BinaryTree leftSubTree, BinaryTree rightSubTree) {
+		root = new Node(word, index);
 
 		if (leftSubTree != null) { root.left = leftSubTree.root; }
 		else { root.left = null; }
@@ -65,10 +65,11 @@ public class BinaryTree	 {
 		protected Node right;
 
 		// "Constructor should take in a word *** and a line number ***"
-		public Node(String word) {
+		public Node(String word, int lineIndex) {
 			this.word = word;
 			this.occurrences = 1;
 			this.indices = new ArrayList<Integer>();
+			this.indices.add(lineIndex);
 			left = null;
 			right = null;
 		}

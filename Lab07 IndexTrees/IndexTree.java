@@ -1,3 +1,6 @@
+import java.util.*;
+import java.io.*;
+
 // Your class. Notice how it has no generics.
 // This is because we use generics when we have no idea what kind of data we are getting
 // Here we know we are getting two pieces of data:  a string and a line number
@@ -9,11 +12,11 @@ public class IndexTree extends BinaryTree {
 	IndexTree() {
 		super();
 	}
-	IndexTree(String word) {
-		super(new Node(word));
+	IndexTree(String word, int index) {
+		super(new Node(word, index));
 	}
-	IndexTree(String word, BinaryTree leftSubTree, BinaryTree rightSubTree) {
-		super(word, leftSubTree, rightSubTree); 
+	IndexTree(String word, int index, BinaryTree leftSubTree, BinaryTree rightSubTree) {
+		super(word, index, leftSubTree, rightSubTree); 
 	}
 
 	
@@ -67,18 +70,38 @@ public class IndexTree extends BinaryTree {
 		
 	}
 	
-	public static void main(String[] args){
-		IndexTree leftSub = new IndexTree("LEEEFT");
-		IndexTree rightSub = new IndexTree("RIIGHT");
-		IndexTree iTree = new IndexTree("ROOOOT", leftSub, rightSub);
+
+	public static void main(String[] args) throws IOException {
+		IndexTree leftSub = new IndexTree("LEEEFT", 1);
+		IndexTree rightSub = new IndexTree("RIIGHT", 2);
+		IndexTree iTree = new IndexTree("ROOOOT", 0, leftSub, rightSub);
 		
-		System.out.println("hey there sexy");
-		System.out.println("inOrder :");
+		System.out.println("\ninOrder :");
 		System.out.println(iTree.toString());
 
 		System.out.println(leftSub.toString());
+
+
 		// add all the words to the tree
-		
+
+		// reads file until end, removes formatting and capitals
+		Scanner scanner = new Scanner(new File("dummy.txt"));
+		while (scanner.hasNext()) {
+			String next = scanner.next();
+			next = next.toLowerCase().replaceAll("[^a-z0-9]", ""); 	// formatting
+			System.out.println(next);
+		}
+
+		Scanner scan = new Scanner(new File("dummy.txt"));
+		while (scanner.hasNextLine()) {
+			String nextLine = scanner.nextLine();
+			nextLine = nextLine.toLowerCase().replaceAll("[^a-z0-9]", ""); 	// formatting
+			system.out.println(nextLine);
+
+			String[] split = nextLine.split("\\s+")
+			for 
+		}
+
 		// print out the index
 		
 		// test removing a word from the index
