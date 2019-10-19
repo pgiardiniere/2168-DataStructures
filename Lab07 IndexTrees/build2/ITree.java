@@ -7,10 +7,7 @@ public class ITree {
 
 	public ITree() { root = null; }
 
-	public void add(String word, int lineNum) {
-		if (root == null) { root = add(word, lineNum, root); }
-		else add(word, lineNum, root);
-	}
+	public void add(String word, int lineNum) { root = add(word, lineNum, root); }
 
 	public INode add(String word, int lineNum, INode curNode) {
 		if (curNode == null) { 
@@ -40,9 +37,7 @@ public class ITree {
 		}
 	}
 
-	public boolean contains(String word) { 
-		return contains(word, root);
-	}
+	public boolean contains(String word) { return contains(word, root); }
 
 	public boolean contains(String word, INode curNode) {
 		if (curNode == null) { return false; }
@@ -58,78 +53,102 @@ public class ITree {
 		}
 	}
 
-	public void delete(String word) {
-		delete(word, root);
+	public String search(String word) { return search(word, root); }
+
+	public String search(String word, INode curNode) {
+		if (curNode == null) { return "Your word " + word + " was not found."; }
+
+		else if (word.equals(curNode.word)) { 
+			return curNode.toString();
+		}
+		else if (word.compareToIgnoreCase(curNode.word) < 0) {
+			return search(word, curNode.left);
+		}
+		else {
+			return search(word, curNode.right);
+		}		
 	}
 
-	public void delete(String word, INode curNode) {
-		if (curNode == null) {  } 					// this word not in list. do nothing.
+	public void delete(String word) {
+		root = delete(word, root);
+	}
 
-		else if (word.equals(curNode.word)) { 		// found node to delete. 
+	public INode delete(String word, INode curNode) {
+		if (curNode == null) { return null; } 		// this word not in list. return null (no node deleted)
+
+		if (word.equals(curNode.word)) { 			// found node to delete. 
 			// 0 Child nodes
 			if (curNode.left == null && curNode.right == null) {
-				curNode = null;
+				return null;
 			}
 			// 1 Child node (on the left)
 			else if (curNode.left != null && curNode.right == null) {
-				curNode = curNode.left;
+				return curNode.left;
 			}
 			// 1 Child node (on the right)
 			else if (curNode.left == null && curNode.right != null) {
-				curNode = curNode.right;
+				return curNode.right;
 			}
 			// 2 Child nodes
 			else if (curNode.left != null && curNode.right != null) {
 				// get smallest leaf node from the right-hand subTree:
 				INode leastLeaf = getLeastLeaf(curNode.right);
-				// transform curNode data into leastLeaf's data. Preserves tree structure
+				// delete curNode's data by overwriting with least leaf (to preserve tree structure)
 				curNode.word = leastLeaf.word;
 				curNode.occurrences = leastLeaf.occurrences;
 				curNode.indices = leastLeaf.indices;
-				// then delete leastLeaf (as it is now duplicate)
-				delete(leastLeaf.word, curNode.right);
+				// delete leastLeaf (as it is now duplicate)
+				curNode.right = delete(leastLeaf.word, curNode.right);
+				return curNode;
 			}
 		}
 
-		else if (word.compareToIgnoreCase(curNode.word) < 0) {
-			delete(word, curNode.left);
+		if (word.compareToIgnoreCase(curNode.word) < 0) { // recurse down 1 level. 
+			curNode.left = delete(word, curNode.left);
+			return curNode;
 		}
-		else {
-			delete(word, curNode.right);
-		}
+		// implied else-if, covered all cases. Otherwise compiler complains about missing return statement
+		curNode.right = delete(word, curNode.right);
+		return curNode;
 	}
 
 	public INode getLeastLeaf(INode curNode) {
 		return curNode.left == null ? curNode : getLeastLeaf(curNode.left);
 	}
 
-	public static void main(String[] args) {
-		// ITree treeLeft = new ITree("left", 0 );
-		// ITree treeRight = new ITree("right", 2);
-		ITree treeBase = new ITree();
-		treeBase.add("a", 0);
-		treeBase.add("b", 1);
-		treeBase.add("c", 1);
-		treeBase.add("d", 2);
-		treeBase.add("e", 2);
-		treeBase.add("f", 2);
-		treeBase.add("g", 2);
-		treeBase.add("h", 2);
-		treeBase.add("i", 2);
-		treeBase.add("j", 2);
+	public static void main(String[] args) throws IOException {
+		ITree tree = new ITree();
 
-		treeBase.printIndex();
+		// read input data from file:
+		int curLine = 0;
+		Scanner scanner = new Scanner(new File("shakespeare.txt"));
 
-		treeBase.delete("j");
+		// push 1 line of text into the tree, until file is done.
+		while (scanner.hasNextLine()) {
+			curLine++;
+			String nextLine = scanner.nextLine(); 								// get raw text
+			nextLine = nextLine.toLowerCase().replaceAll("[^a-z0-9 ]", ""); 	// format, but retain WhiteSpace
+			
+			String[] tmp = nextLine.split(" "); 									// split on whitespace, store in primitive array
+			ArrayList<String> split = new ArrayList<String>(Arrays.asList(tmp)); 	// push to ArrayList
+			for (String str : split) { tree.add(str, curLine); }					// feed contents of ArrayList to tree
+		}
 
-		System.out.println();
-		treeBase.printIndex();
+		System.out.println("\n");
+			// DUMMY.txt showcase:
+		/*
+		tree.printIndex();
+		System.out.println("\n" + tree.contains("beaver"));
+		System.out.println(tree.search("beaver"));
 
-		treeBase.delete("a");
-		treeBase.delete("e");
+		tree.delete("beaver");
 
-		System.out.println();
-		treeBase.printIndex();
+		System.out.println(tree.contains("beaver"));
+		System.out.println(tree.search("beaver") + "\n");
+		tree.printIndex();
+		*/
+
+			// shakespeare.txt showcase:
+		tree.printIndex();
 	}
-
 }
