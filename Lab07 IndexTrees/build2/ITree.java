@@ -69,9 +69,7 @@ public class ITree {
 		}		
 	}
 
-	public void delete(String word) {
-		root = delete(word, root);
-	}
+	public void delete(String word) { root = delete(word, root); }
 
 	public INode delete(String word, INode curNode) {
 		if (curNode == null) { return null; } 		// this word not in list. return null (no node deleted)
