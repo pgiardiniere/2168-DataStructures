@@ -66,7 +66,7 @@ public class ITree {
 		}
 		else {
 			return search(word, curNode.right);
-		}		
+		}
 	}
 
 	public void delete(String word) { root = delete(word, root); }
@@ -119,7 +119,7 @@ public class ITree {
 
 		// read input data from file:
 		int curLine = 0;
-		Scanner scanner = new Scanner(new File("shakespeare.txt"));
+		Scanner scanner = new Scanner(new File("dummy.txt"));
 
 		// push 1 line of text into the tree, until file is done.
 		while (scanner.hasNextLine()) {
@@ -134,19 +134,19 @@ public class ITree {
 
 		System.out.println("\n");
 			// DUMMY.txt showcase:
-		/*
+		
 		tree.printIndex();
 		System.out.println("\n" + tree.contains("beaver"));
-		System.out.println(tree.search("beaver"));
+		System.out.println(tree.search("string"));
 
 		tree.delete("beaver");
 
 		System.out.println(tree.contains("beaver"));
 		System.out.println(tree.search("beaver") + "\n");
 		tree.printIndex();
-		*/
+		
 
 			// shakespeare.txt showcase:
-		tree.printIndex();
+		// tree.printIndex();
 	}
 }
