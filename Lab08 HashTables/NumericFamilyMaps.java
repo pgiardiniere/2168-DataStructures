@@ -1,12 +1,12 @@
 import java.util.*;
 
-public class Maps {
+public class NumericFamilyMaps {
 
 	// instance vars
 	// Map<Integer, ArrayList<String>> map = new HashMap<Integer, ArrayList<String>>();
 
 	// constructor
-	public Maps() {
+	public NumericFamilyMaps() {
 
 	}
 
