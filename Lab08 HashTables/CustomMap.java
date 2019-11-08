@@ -13,7 +13,7 @@ public class CustomMap {
 
 	public void populate() { populate(map); }
 
-	public void populate(Map<Integer, ArrayList<String>> map) {
+	public void populate() {
 		try { 
 			Scanner scanner = new Scanner(new File("shortdict.txt")); 
 			while (scanner.hasNextLine()) {
@@ -24,8 +24,6 @@ public class CustomMap {
 			}
 		}
 		catch (IOException e) { System.out.println(e); }
-
-		System.out.println(map.entrySet());
 	}
 
 	public void initialWords(Integer length) { initialWords(length, map); }
@@ -36,19 +34,32 @@ public class CustomMap {
 			Scanner uinput = new Scanner(System.in);
 			length = Integer.parseInt(uinput.nextLine().trim());
 		}
-		// System.out.println(map.entrySet());
+		System.out.println("");
+		System.out.println(map.entrySet());
 		
 		ArrayList<String> tmp = map.get(length);
+		map = null;
 		map = new HashMap<Integer, ArrayList<String>>();
-		map.put(null, tmp);
+		map.put(length, tmp);
 
-		// System.out.println(map.entrySet());
+		System.out.println(map.entrySet());
 	}
 
-	public void updateFam() { updateFam(map); }
+	public void updateFam(Character c) { updateFam(c, map); }
 
-	public void updateFam(Map<Integer, ArrayList<String>> map) {
-		System.out.println("teh stuff");
+	public void updateFam(Character c, Map<Integer, ArrayList<String>> map) {
+		System.out.println(map.entrySet());
+
+		//ArrayList<String> tmp = map.get(); 
+			// ehhh getting by the "only entry in map" logic ONLY works for the first round......
+			// I need to get a better split
+		//System.out.println(tmp.toString());
+
+		// grabs each entry in map
+		for (Map.Entry<Integer, ArrayList<String>> entry : map.entrySet()) {
+			System.out.println(entry);
+		}
+
 	}
 
 	public static void main(String[] args) {
@@ -60,6 +71,8 @@ public class CustomMap {
 		//uinput.close();
 		hangMap.initialWords(Integer.parseInt(uinput.nextLine().trim()));
 
+		System.out.println("OKAY WE READY TO PLAY CHUMP. PICK A LETTER");
+		hangMap.updateFam(uinput.nextLine().charAt(0));
 
 	}
 }
