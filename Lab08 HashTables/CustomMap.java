@@ -11,8 +11,6 @@ public class CustomMap {
 		famArr = new ArrayList<String>();
 	}
 
-	// public void populate() { populate(map); }
-
 	public void populate() {
 		try { 
 			Scanner scanner = new Scanner(new File("shortdict.txt")); 
@@ -25,8 +23,6 @@ public class CustomMap {
 		}
 		catch (IOException e) { System.out.println(e); }
 	}
-
-	// public void initialWords(Integer length) { initialWords(length, map); } // Unnecessary to pass inst var like this
 
 	public void initialWords(Integer length) {
 		while (!map.containsKey(length)) {
@@ -44,21 +40,22 @@ public class CustomMap {
 		System.out.println(map.entrySet());
 	}
 
-	// public void updateFam(Character c) { updateFam(c, map); } 				// Unnecessary to pass inst var like this
-
 	public void updateFam(Character c) {
 		System.out.println(map.entrySet());
 
-		//ArrayList<String> tmp = map.get(); 
+		Map.Entry<Integer, ArrayList<String>> entry = map.entrySet().iterator().next();
+		ArrayList<String> tmp = entry.getValue();
 			// ehhh getting by the "only entry in map" logic ONLY works for the first round......
 			// I need to get a better split
-		//System.out.println(tmp.toString());
+		System.out.println(tmp.toString());
 
-		// grabs each entry in map
-		for (Map.Entry<Integer, ArrayList<String>> entry : map.entrySet()) {
-			System.out.println(entry);
-		}
-
+		// grabs each entry in map, see above note for why (possibly) necessary.
+			/*
+			for (Map.Entry<Integer, ArrayList<String>> entry : map.entrySet()) {
+				System.out.println(entry);
+			}
+			*/
+		
 	}
 
 	public static void main(String[] args) {
@@ -69,10 +66,7 @@ public class CustomMap {
 		System.out.println("ENTER LENGHT OF WORD TO PLAY WITH QUICK DO EET NOW");
 		hangMap.initialWords(Integer.parseInt(uinput.nextLine().trim()));
 
-
-
 		System.out.println("OKAY WE READY TO PLAY CHUMP. PICK A LETTER");
 		hangMap.updateFam(uinput.nextLine().charAt(0));
-
 	}
 }
