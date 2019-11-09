@@ -11,7 +11,7 @@ public class CustomMap {
 		famArr = new ArrayList<String>();
 	}
 
-	public void populate() { populate(map); }
+	// public void populate() { populate(map); }
 
 	public void populate() {
 		try { 
@@ -26,9 +26,9 @@ public class CustomMap {
 		catch (IOException e) { System.out.println(e); }
 	}
 
-	public void initialWords(Integer length) { initialWords(length, map); }
+	// public void initialWords(Integer length) { initialWords(length, map); } // Unnecessary to pass inst var like this
 
-	public void initialWords(Integer length, Map<Integer, ArrayList<String>> map) {
+	public void initialWords(Integer length) {
 		while (!map.containsKey(length)) {
 			System.out.println("sorry breh don't have a word of that length. try another.");
 			Scanner uinput = new Scanner(System.in);
@@ -38,16 +38,15 @@ public class CustomMap {
 		System.out.println(map.entrySet());
 		
 		ArrayList<String> tmp = map.get(length);
-		map = null;
 		map = new HashMap<Integer, ArrayList<String>>();
 		map.put(length, tmp);
 
 		System.out.println(map.entrySet());
 	}
 
-	public void updateFam(Character c) { updateFam(c, map); }
+	// public void updateFam(Character c) { updateFam(c, map); } 				// Unnecessary to pass inst var like this
 
-	public void updateFam(Character c, Map<Integer, ArrayList<String>> map) {
+	public void updateFam(Character c) {
 		System.out.println(map.entrySet());
 
 		//ArrayList<String> tmp = map.get(); 
@@ -68,8 +67,9 @@ public class CustomMap {
 		
 		Scanner uinput = new Scanner(System.in);
 		System.out.println("ENTER LENGHT OF WORD TO PLAY WITH QUICK DO EET NOW");
-		//uinput.close();
 		hangMap.initialWords(Integer.parseInt(uinput.nextLine().trim()));
+
+
 
 		System.out.println("OKAY WE READY TO PLAY CHUMP. PICK A LETTER");
 		hangMap.updateFam(uinput.nextLine().charAt(0));
