@@ -30,32 +30,37 @@ public class CustomMap {
 			Scanner uinput = new Scanner(System.in);
 			length = Integer.parseInt(uinput.nextLine().trim());
 		}
-		System.out.println("");
-		System.out.println(map.entrySet());
-		
 		ArrayList<String> tmp = map.get(length);
 		map = new HashMap<Integer, ArrayList<String>>();
 		map.put(length, tmp);
-
-		System.out.println(map.entrySet());
 	}
 
 	public void updateFam(Character c) {
 		System.out.println(map.entrySet());
 
 		Map.Entry<Integer, ArrayList<String>> entry = map.entrySet().iterator().next();
-		ArrayList<String> tmp = entry.getValue();
-			// ehhh getting by the "only entry in map" logic ONLY works for the first round......
-			// I need to get a better split
-		System.out.println(tmp.toString());
+		ArrayList<String> tmpArr = entry.getValue();
+		Integer tmpInt = entry.getKey();
+		
+		// re-write map with all new valid families (of matched chars)
+		for (int i = 0; i < tmpInt; i++) {
+			ArrayList<String> arr = new ArrayList<String>();
+			map.put(i, arr);
+		}
 
+		
+		
 		// grabs each entry in map, see above note for why (possibly) necessary.
 			/*
 			for (Map.Entry<Integer, ArrayList<String>> entry : map.entrySet()) {
 				System.out.println(entry);
 			}
 			*/
-		
+		for (String str : tmpArr) {
+			for (int i = 0; i < str.length(); i++) {
+				 
+			}
+		}
 	}
 
 	public static void main(String[] args) {
