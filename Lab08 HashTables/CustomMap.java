@@ -42,24 +42,40 @@ public class CustomMap {
 		ArrayList<String> tmpArr = entry.getValue();
 		Integer tmpInt = entry.getKey();
 		
-		// re-write map with all new valid families (of matched chars)
+		// re-write map with all new valid families (of matched chars) & remove existing data
 		for (int i = 0; i < tmpInt; i++) {
 			ArrayList<String> arr = new ArrayList<String>();
 			map.put(i, arr);
 		}
-
+		map.remove(tmpInt);
+		System.out.println(map.entrySet());
 		
-		
-		// grabs each entry in map, see above note for why (possibly) necessary.
-			/*
-			for (Map.Entry<Integer, ArrayList<String>> entry : map.entrySet()) {
-				System.out.println(entry);
-			}
-			*/
+		// fill in the word families based on character (guess) input
 		for (String str : tmpArr) {
+			Integer matches = 0;
 			for (int i = 0; i < str.length(); i++) {
-				 
+				if (c == str.charAt(i)) { matches++; }
 			}
+			if (map.get(matches) == null) {
+				ArrayList<String> tmp2 = new ArrayList<String>();
+				tmp2.add(str);
+				map.put(matches, tmp2);
+
+			}
+			else {
+				ArrayList<String> tmp2 = map.get(matches);
+				tmp2.add(str);
+				map.put(matches, tmp2);
+			}
+		}
+		System.out.println(map.entrySet());
+
+		// The guess should now be set to the first word in the LARGEST of the families.
+		// method:
+		// iterate over entire map entryset, compare length of each arr, taking the greatest length arr, then the first string in the largest family.
+		Iterator iter = map.entrySet().iterator();
+		while (iter.hasNext()) {
+			// do the stuff
 		}
 	}
 
