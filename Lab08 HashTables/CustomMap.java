@@ -5,10 +5,14 @@ public class CustomMap {
 
 	Map<Integer, ArrayList<String>> map;
 	ArrayList<String> famArr;
+	String curWord;
+	ArrayList<Character> guessedChars;
 
 	public CustomMap() {
 		map = new HashMap<Integer, ArrayList<String>>();
 		famArr = new ArrayList<String>();
+		curWord = "";
+		guessedChars = new ArrayList<Character>();
 	}
 
 	public void populate() {
@@ -36,7 +40,8 @@ public class CustomMap {
 	}
 
 	public void updateFam(Character c) {
-		System.out.println(map.entrySet());
+		guessedChars.add(c);
+		// System.out.println(map.entrySet());
 
 		Map.Entry<Integer, ArrayList<String>> entry = map.entrySet().iterator().next();
 		ArrayList<String> tmpArr = entry.getValue();
@@ -48,7 +53,7 @@ public class CustomMap {
 			map.put(i, arr);
 		}
 		map.remove(tmpInt);
-		System.out.println(map.entrySet());
+		// System.out.println(map.entrySet());
 		
 		// fill in the word families based on character (guess) input
 		for (String str : tmpArr) {
@@ -60,7 +65,6 @@ public class CustomMap {
 				ArrayList<String> tmp2 = new ArrayList<String>();
 				tmp2.add(str);
 				map.put(matches, tmp2);
-
 			}
 			else {
 				ArrayList<String> tmp2 = map.get(matches);
@@ -70,12 +74,31 @@ public class CustomMap {
 		}
 		System.out.println(map.entrySet());
 
-		// The guess should now be set to the first word in the LARGEST of the families.
-		// method:
-		// iterate over entire map entryset, compare length of each arr, taking the greatest length arr, then the first string in the largest family.
+		// Check size() of each updated word family, select family with greatest num of words.
 		Iterator iter = map.entrySet().iterator();
+		Map.Entry<Integer, ArrayList<String>> theEntry = (Map.Entry<Integer, ArrayList<String>>) iter.next();
+		ArrayList<String> compareOld = theEntry.getValue();
+		Integer maxFamily = theEntry.getKey();
+
 		while (iter.hasNext()) {
-			// do the stuff
+			theEntry = (Map.Entry<Integer, ArrayList<String>>) iter.next();
+			ArrayList<String> compareNew = theEntry.getValue();
+			if (compareNew.size() > compareOld.size()) maxFamily = theEntry.getKey();
+			compareOld = theEntry.getValue();
+		}
+
+		System.out.println("Greatest num of words in matched-char-family " + maxFamily);
+		System.out.println("That family contains " + map.get(maxFamily));
+
+		// select the first word of the largest family as the initial word. Reveal output hint to user.
+		curWord = map.get(maxFamily).get(0);
+		System.out.println("Your word is " + curWord);
+		System.out.println("Current correct letters printed below:");
+		for (int i = 0; i < curWord.length(); i++ ) {
+			for (Character cha : guessedChars) {
+				if (cha.equals(curWord.charAt(i))) System.out.print(cha);
+				else System.out.print("_") ;
+			}
 		}
 	}
 
