@@ -7,6 +7,7 @@ public class CustomMap {
 	ArrayList<String> famArr;
 	String curWord;
 	ArrayList<Character> guessedChars;
+	char[] charPositions;
 
 	public CustomMap() {
 		map = new HashMap<Integer, ArrayList<String>>();
@@ -87,7 +88,7 @@ public class CustomMap {
 			compareOld = theEntry.getValue();
 		}
 
-		System.out.println("Greatest num of words in matched-char-family " + maxFamily);
+		System.out.println("Greatest num of words is in matched-char-family " + maxFamily);
 		System.out.println("That family contains " + map.get(maxFamily));
 
 		// select the first word of the largest family as the initial word. Reveal output hint to user.
@@ -96,10 +97,15 @@ public class CustomMap {
 		System.out.println("Current correct letters printed below:");
 		for (int i = 0; i < curWord.length(); i++ ) {
 			for (Character cha : guessedChars) {
+				// todo: instead of manuall printing these, store them in an array (or ArrayList) and then toString() it.
+				// advantage: allows future access, need the position of guess chars to create future families.
 				if (cha.equals(curWord.charAt(i))) System.out.print(cha);
-				else System.out.print("_") ;
+				else System.out.print("_");
+
 			}
 		}
+
+		// 
 	}
 
 	public static void main(String[] args) {
@@ -112,5 +118,7 @@ public class CustomMap {
 
 		System.out.println("OKAY WE READY TO PLAY CHUMP. PICK A LETTER");
 		hangMap.updateFam(uinput.nextLine().charAt(0));
+
+
 	}
 }
