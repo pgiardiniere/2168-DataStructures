@@ -7,13 +7,14 @@ public class CustomMap {
 	ArrayList<String> famArr;
 	String curWord;
 	ArrayList<Character> guessedChars;
-	char[] charPositions;
+	ArrayList<Character> guessedCharsPos;
 
 	public CustomMap() {
 		map = new HashMap<Integer, ArrayList<String>>();
 		famArr = new ArrayList<String>();
 		curWord = "";
 		guessedChars = new ArrayList<Character>();
+		guessedCharsPos = new ArrayList<Character>();
 	}
 
 	public void populate() {
@@ -93,16 +94,16 @@ public class CustomMap {
 
 		// select the first word of the largest family as the initial word. Reveal output hint to user.
 		curWord = map.get(maxFamily).get(0);
+		guessedCharsPos = new ArrayList<Character>(curWord.length());
 		System.out.println("Your word is " + curWord);
 		System.out.println("Current correct letters printed below:");
 		for (int i = 0; i < curWord.length(); i++ ) {
 			for (Character cha : guessedChars) {
-				// todo: instead of manually printing these, store them in an array (or ArrayList) and then toString() it.
-				// advantage: allows future access, need the position of guess chars to create future families.
-				if (cha.equals(curWord.charAt(i))) System.out.print(cha);
-				else System.out.print("_");
+				if (cha.equals(curWord.charAt(i))) guessedCharsPos.add(i, curWord.charAt(i));
+				else guessedCharsPos.add(i, null);
 			}
 		}
+		for (Character cha : guessedCharsPos) { System.out.print(cha == null ? "_" : cha); }
 		System.out.print("\n");
 	}
 
@@ -124,9 +125,11 @@ public class CustomMap {
 		System.out.println("OKAY WE READY TO PLAY CHUMP. PICK A LETTER");
 		hangMap.updateFam(uinput.nextLine().charAt(0));
 
+		/*
 		for (int i = 0; i < numGuesses; i++) {
 			System.out.println("PICK ANOTHA ONE");
 			hangMap.startCheatin(uinput.nextLine().charAt(0));
 		}
+		*/
 	}
 }
