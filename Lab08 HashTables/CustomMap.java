@@ -97,15 +97,17 @@ public class CustomMap {
 		System.out.println("Current correct letters printed below:");
 		for (int i = 0; i < curWord.length(); i++ ) {
 			for (Character cha : guessedChars) {
-				// todo: instead of manuall printing these, store them in an array (or ArrayList) and then toString() it.
+				// todo: instead of manually printing these, store them in an array (or ArrayList) and then toString() it.
 				// advantage: allows future access, need the position of guess chars to create future families.
 				if (cha.equals(curWord.charAt(i))) System.out.print(cha);
 				else System.out.print("_");
-
 			}
 		}
+		System.out.print("\n");
+	}
 
-		// 
+	public void startCheatin(Character c) {
+
 	}
 
 	public static void main(String[] args) {
@@ -116,9 +118,15 @@ public class CustomMap {
 		System.out.println("ENTER LENGHT OF WORD TO PLAY WITH QUICK DO EET NOW");
 		hangMap.initialWords(Integer.parseInt(uinput.nextLine().trim()));
 
+		System.out.println("ENTER U TOTAL NUM OF GUESSES FAM");
+		Integer numGuesses = (Integer.parseInt(uinput.nextLine().trim()));
+
 		System.out.println("OKAY WE READY TO PLAY CHUMP. PICK A LETTER");
 		hangMap.updateFam(uinput.nextLine().charAt(0));
 
-
+		for (int i = 0; i < numGuesses; i++) {
+			System.out.println("PICK ANOTHA ONE");
+			hangMap.startCheatin(uinput.nextLine().charAt(0));
+		}
 	}
 }
