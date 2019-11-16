@@ -82,7 +82,7 @@ public class CustomMap {
 		}
 		System.out.println(map.entrySet());
 
-		// Check size() of each updated word family, select family with greatest num of words.
+		// Check size() of each updated word family, update maxFamily to key containing greatest num of words.
 		Iterator iter = map.entrySet().iterator();
 		Map.Entry<Integer, ArrayList<String>> theEntry = (Map.Entry<Integer, ArrayList<String>>) iter.next();
 		ArrayList<String> compareOld = theEntry.getValue();
@@ -97,9 +97,10 @@ public class CustomMap {
 
 		// select the first word of the largest family as the initial word. Reveal output hint to user.
 		curWord = map.get(maxFamily).get(0);
-		guessedCharsPos = new ArrayList<Character>(curWord.length());
 		System.out.println("\nYour word is \"" + curWord + "\"");
+
 		System.out.println("Current correct letters printed below:");
+		guessedCharsPos = new ArrayList<Character>(curWord.length());
 		for (int i = 0; i < curWord.length(); i++ ) {
 			for (Character cha : guessedChars) {
 				if (cha.equals(curWord.charAt(i))) guessedCharsPos.add(i, curWord.charAt(i));
@@ -134,7 +135,9 @@ public class CustomMap {
 		for (String str : tmpArr) {
 			Integer matches = 0;
 			for (int i = 0; i < str.length(); i++) {
-				if (c == str.charAt(i)) { matches++; }
+				for (Character cha : guessedChars) {
+					if (cha == str.charAt(i)) { matches++; }
+				}
 			}
 			if (map.get(matches) == null) {
 				ArrayList<String> tmp2 = new ArrayList<String>();
@@ -162,6 +165,35 @@ public class CustomMap {
 			compareOld = theEntry.getValue();
 		}
 
+		// select the first word of the largest family as the initial word. Reveal output hint to user.
+		System.out.println("arr of num characters matched with greatest number of elements: " + maxFamily);
+		
+		curWord = map.get(maxFamily).get(0);
+		System.out.println("\nYour word is \"" + curWord + "\"");
+
+		System.out.println("Current correct letters printed below:");
+		guessedCharsPos = new ArrayList<Character>();
+		for (int i = 0; i < curWord.length(); i++ ) {
+			//boolean isMatch = false;
+
+			// then add the char in the correct positions
+			if ( guessedChars.contains(curWord.charAt(i)) ) { guessedCharsPos.add(i, curWord.charAt(i)); }
+			else { guessedCharsPos.add(i, null); }
+			/*
+			for (Character cha : guessedChars) {
+				if (cha.equals(curWord.charAt(i))) { 
+					
+					guessedCharsPos.add(i, curWord.charAt(i));
+					break;
+				}
+				// if (!isMatch) guessedCharsPos.add(i, null);
+			}
+			*/
+		}
+		for (Character cha : guessedCharsPos) { System.out.print(cha == null ? "_" : cha); }
+		System.out.print("\n");
+
+
 		// return false;
 	}	
 
@@ -181,13 +213,11 @@ public class CustomMap {
 		hangMap.updateFam(uinput.nextLine().charAt(0));
 
 		System.out.println("\nOkay, now pick another character");
-		hangMap.play(uinput.nextLine().charAt(0));
-
-		/*
-		for (int i = 0; i < numGuesses; i++) {
-			boolean hasWon = hangMap.play(//stuff)
-			if (hasWon) break;
+		// hangMap.play(uinput.nextLine().charAt(0));
+		for (int i = 0; i < numGuesses-1; i++) {
+			hangMap.play(uinput.nextLine().charAt(0));
 		}
-		*/
+
+		System.out.println("You're out of guesses");
 	}
 }
