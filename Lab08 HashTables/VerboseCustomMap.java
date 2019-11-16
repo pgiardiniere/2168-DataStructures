@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class CustomMap {
+public class VerboseCustomMap {
 
 	Map<Integer, ArrayList<String>> map;
 	ArrayList<String> famArr;
@@ -10,7 +10,7 @@ public class CustomMap {
 	ArrayList<Character> guessedCharsPos;
 	Integer wordLength;
 
-	public CustomMap() {
+	public VerboseCustomMap() {
 		map = new HashMap<Integer, ArrayList<String>>();
 		famArr = new ArrayList<String>();
 		curWord = "";
@@ -20,7 +20,7 @@ public class CustomMap {
 
 	public void populate() {
 		try { 
-			Scanner scanner = new Scanner(new File("dictionary.txt")); 
+			Scanner scanner = new Scanner(new File("shordict.txt")); 
 			while (scanner.hasNextLine()) {
 				String str = scanner.nextLine().trim();
 				famArr = ( map.containsKey(str.length()) ) ? map.get(str.length()) : new ArrayList<String>();
@@ -30,7 +30,7 @@ public class CustomMap {
 		}
 		catch (IOException e) { System.out.println(e); }
 
-		// System.out.println("\nTotal word bank:\n" + map.entrySet());
+		System.out.println("\nTotal word bank:\n" + map.entrySet());
 	}
 
 	public void initialWords(Integer length) {
@@ -44,7 +44,7 @@ public class CustomMap {
 		map = new HashMap<Integer, ArrayList<String>>();
 		map.put(length, tmp);
 
-		// System.out.println(map.entrySet());
+		System.out.println(map.entrySet());
 	}
 
 	public void updateFam(Character c) {
@@ -54,14 +54,14 @@ public class CustomMap {
 		ArrayList<String> tmpArr = entry.getValue();
 		Integer tmpInt = entry.getKey();
 		
-		// System.out.println("\n" + map.entrySet());
+		System.out.println("\n" + map.entrySet());
 		// re-write map with all valid families (of matched chars) & remove existing data
 		for (int i = 0; i < tmpInt; i++) {
 			ArrayList<String> arr = new ArrayList<String>();
 			map.put(i, arr);
 		}
 		map.remove(tmpInt);
-		// System.out.println(map.entrySet());
+		System.out.println(map.entrySet());
 		
 		// fill in the word families based on FIRST character (guess) input
 		for (String str : tmpArr) {
@@ -80,7 +80,7 @@ public class CustomMap {
 				map.put(matches, tmp2);
 			}
 		}
-		// System.out.println(map.entrySet());
+		System.out.println(map.entrySet());
 
 		// Check size() of each updated word family, update maxFamily to key containing greatest num of words.
 		Iterator iter = map.entrySet().iterator();
@@ -97,7 +97,7 @@ public class CustomMap {
 
 		// select the first word of the largest family as the initial word. Reveal output hint to user.
 		curWord = map.get(maxFamily).get(0);
-		// System.out.println("\nYour word is \"" + curWord + "\"");
+		System.out.println("\nYour word is \"" + curWord + "\"");
 
 		System.out.println("Current correct letters printed below:");
 		guessedCharsPos = new ArrayList<Character>(curWord.length());
@@ -130,13 +130,13 @@ public class CustomMap {
 			if (maxFamily == null || ent.getValue().size() > map.get(maxFamily).size()) maxFamily = ent.getKey();
 		}
 
-		// System.out.println("\n" + map.entrySet());
+		System.out.println("\n" + map.entrySet());
 		// overwrite map with all new valid families (of num-matched chars)
 		for (int i = 0; i < wordLength; i++) {
 			ArrayList<String> arr = new ArrayList<String>();
 			map.put(i, arr);
 		}
-		// System.out.println(map.entrySet());
+		System.out.println(map.entrySet());
 		
 		// fill in the word families based on ALL character (guess) input
 		for (String str : maxArray) {
@@ -157,7 +157,7 @@ public class CustomMap {
 				map.put(matches, tmp2);
 			}
 		}
-		// System.out.println(map.entrySet());
+		System.out.println(map.entrySet());
 
 		// re-select the first word of the updated largest family as the initial word. Reveal output hint to user.
 		maxArray = null;
@@ -168,8 +168,11 @@ public class CustomMap {
 		for (Map.Entry<Integer, ArrayList<String>> ent : map.entrySet()) {
 			if (maxFamily == null || ent.getValue().size() > map.get(maxFamily).size()) maxFamily = ent.getKey();
 		}		
+		System.out.println("\nmaxFamily is " + maxFamily + "\nand maxArray is " + maxArray);
+
 		curWord = maxArray.get(0);
-		
+		System.out.println("\nYour word is \"" + curWord + "\"");
+
 		System.out.println("Current correct letters printed below:");
 		guessedCharsPos = new ArrayList<Character>();
 		for (int i = 0; i < curWord.length(); i++ ) {
@@ -187,7 +190,7 @@ public class CustomMap {
 	}
 
 	public static void main(String[] args) {
-		CustomMap hangMap = new CustomMap();
+		VerboseCustomMap hangMap = new VerboseCustomMap();
 		hangMap.populate();
 		
 		Scanner uinput = new Scanner(System.in);
