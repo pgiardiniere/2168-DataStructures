@@ -8,6 +8,7 @@ public class CustomMap {
 	String curWord;
 	ArrayList<Character> guessedChars;
 	ArrayList<Character> guessedCharsPos;
+	Integer wordLength;
 
 	public CustomMap() {
 		map = new HashMap<Integer, ArrayList<String>>();
@@ -28,36 +29,41 @@ public class CustomMap {
 			}
 		}
 		catch (IOException e) { System.out.println(e); }
+
+		System.out.println("\nTotal word bank:\n" + map.entrySet());
 	}
 
 	public void initialWords(Integer length) {
 		while (!map.containsKey(length)) {
-			System.out.println("sorry breh don't have a word of that length. try another.");
+			System.out.println("I don't have a word of that length. try another.");
 			Scanner uinput = new Scanner(System.in);
 			length = Integer.parseInt(uinput.nextLine().trim());
 		}
+		wordLength = length;
 		ArrayList<String> tmp = map.get(length);
 		map = new HashMap<Integer, ArrayList<String>>();
 		map.put(length, tmp);
+
+		System.out.println(map.entrySet());
 	}
 
 	public void updateFam(Character c) {
 		guessedChars.add(c);
-		// System.out.println(map.entrySet());
 
 		Map.Entry<Integer, ArrayList<String>> entry = map.entrySet().iterator().next();
 		ArrayList<String> tmpArr = entry.getValue();
 		Integer tmpInt = entry.getKey();
 		
-		// re-write map with all new valid families (of matched chars) & remove existing data
+		System.out.println("\n" + map.entrySet());
+		// re-write map with all valid families (of matched chars) & remove existing data
 		for (int i = 0; i < tmpInt; i++) {
 			ArrayList<String> arr = new ArrayList<String>();
 			map.put(i, arr);
 		}
 		map.remove(tmpInt);
-		// System.out.println(map.entrySet());
+		System.out.println(map.entrySet());
 		
-		// fill in the word families based on character (guess) input
+		// fill in the word families based on FIRST character (guess) input
 		for (String str : tmpArr) {
 			Integer matches = 0;
 			for (int i = 0; i < str.length(); i++) {
@@ -81,7 +87,7 @@ public class CustomMap {
 		Map.Entry<Integer, ArrayList<String>> theEntry = (Map.Entry<Integer, ArrayList<String>>) iter.next();
 		ArrayList<String> compareOld = theEntry.getValue();
 		Integer maxFamily = theEntry.getKey();
-
+		
 		while (iter.hasNext()) {
 			theEntry = (Map.Entry<Integer, ArrayList<String>>) iter.next();
 			ArrayList<String> compareNew = theEntry.getValue();
@@ -89,13 +95,10 @@ public class CustomMap {
 			compareOld = theEntry.getValue();
 		}
 
-		System.out.println("Greatest num of words is in matched-char-family " + maxFamily);
-		System.out.println("That family contains " + map.get(maxFamily));
-
 		// select the first word of the largest family as the initial word. Reveal output hint to user.
 		curWord = map.get(maxFamily).get(0);
 		guessedCharsPos = new ArrayList<Character>(curWord.length());
-		System.out.println("Your word is " + curWord);
+		System.out.println("\nYour word is \"" + curWord + "\"");
 		System.out.println("Current correct letters printed below:");
 		for (int i = 0; i < curWord.length(); i++ ) {
 			for (Character cha : guessedChars) {
@@ -105,26 +108,61 @@ public class CustomMap {
 		}
 		for (Character cha : guessedCharsPos) { System.out.print(cha == null ? "_" : cha); }
 		System.out.print("\n");
+
+		// Cleanup map: remove all non-greatest-family entries.
+		tmpArr = map.get(maxFamily);
+		map.clear();
+		map.put(maxFamily, tmpArr);
 	}
 
-	public void cheat(Character c) {
+	public void play(Character c) {
 		guessedChars.add(c);
 
 		Map.Entry<Integer, ArrayList<String>> entry = map.entrySet().iterator().next();
 		ArrayList<String> tmpArr = entry.getValue();
 		Integer tmpInt = entry.getKey();
 
-		System.out.println(map.toString());
-		System.out.println(entry.toString() + "   " + tmpInt);
-
+		System.out.println("\n" + map.entrySet());
 		// overwrite map with all new valid families (of num-matched chars)
-		for (int i = 0; i < tmpInt; i++) {
+		for (int i = 0; i <= wordLength; i++) {
 			ArrayList<String> arr = new ArrayList<String>();
 			map.put(i, arr);
 		}
-		map.remove(tmpInt);
+		System.out.println(map.entrySet());
+		
+		// fill in the word families based on ALL character (guess) input
+		for (String str : tmpArr) {
+			Integer matches = 0;
+			for (int i = 0; i < str.length(); i++) {
+				if (c == str.charAt(i)) { matches++; }
+			}
+			if (map.get(matches) == null) {
+				ArrayList<String> tmp2 = new ArrayList<String>();
+				tmp2.add(str);
+				map.put(matches, tmp2);
+			}
+			else {
+				ArrayList<String> tmp2 = map.get(matches);
+				tmp2.add(str);
+				map.put(matches, tmp2);
+			}
+		}
+		System.out.println(map.entrySet());
 
-		System.out.println(map.toString());
+		// Check size() of each updated word family, select family with greatest num of words.
+		Iterator iter = map.entrySet().iterator();
+		Map.Entry<Integer, ArrayList<String>> theEntry = (Map.Entry<Integer, ArrayList<String>>) iter.next();
+		ArrayList<String> compareOld = theEntry.getValue();
+		Integer maxFamily = theEntry.getKey();
+		
+		while (iter.hasNext()) {
+			theEntry = (Map.Entry<Integer, ArrayList<String>>) iter.next();
+			ArrayList<String> compareNew = theEntry.getValue();
+			if (compareNew.size() > compareOld.size()) maxFamily = theEntry.getKey();
+			compareOld = theEntry.getValue();
+		}
+
+		// return false;
 	}	
 
 	public static void main(String[] args) {
@@ -132,21 +170,23 @@ public class CustomMap {
 		hangMap.populate();
 		
 		Scanner uinput = new Scanner(System.in);
-		System.out.println("ENTER LENGHT OF WORD TO PLAY WITH QUICK DO EET NOW");
-		hangMap.initialWords(Integer.parseInt(uinput.nextLine().trim()));
+		System.out.println("\nEnter length of word to play with");
+		Integer wordLength = Integer.parseInt(uinput.nextLine().trim());
+		hangMap.initialWords(wordLength);
 
-		System.out.println("ENTER U TOTAL NUM OF GUESSES FAM");
+		System.out.println("\nEnter the total number of guesses you want to use");
 		Integer numGuesses = (Integer.parseInt(uinput.nextLine().trim()));
 
-		System.out.println("OKAY WE READY TO PLAY CHUMP. PICK A LETTER");
+		System.out.println("Starting new game : enter first character guess");
 		hangMap.updateFam(uinput.nextLine().charAt(0));
 
-		System.out.println("PICK ANOTHA ONE");
-		hangMap.cheat(uinput.nextLine().charAt(0));
+		System.out.println("\nOkay, now pick another character");
+		hangMap.play(uinput.nextLine().charAt(0));
 
-		/* put PICK ANOTHA ONE in the loop when ready
+		/*
 		for (int i = 0; i < numGuesses; i++) {
-			
+			boolean hasWon = hangMap.play(//stuff)
+			if (hasWon) break;
 		}
 		*/
 	}
