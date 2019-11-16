@@ -107,9 +107,25 @@ public class CustomMap {
 		System.out.print("\n");
 	}
 
-	public void startCheatin(Character c) {
+	public void cheat(Character c) {
+		guessedChars.add(c);
 
-	}
+		Map.Entry<Integer, ArrayList<String>> entry = map.entrySet().iterator().next();
+		ArrayList<String> tmpArr = entry.getValue();
+		Integer tmpInt = entry.getKey();
+
+		System.out.println(map.toString());
+		System.out.println(entry.toString() + "   " + tmpInt);
+
+		// overwrite map with all new valid families (of num-matched chars)
+		for (int i = 0; i < tmpInt; i++) {
+			ArrayList<String> arr = new ArrayList<String>();
+			map.put(i, arr);
+		}
+		map.remove(tmpInt);
+
+		System.out.println(map.toString());
+	}	
 
 	public static void main(String[] args) {
 		CustomMap hangMap = new CustomMap();
@@ -125,10 +141,12 @@ public class CustomMap {
 		System.out.println("OKAY WE READY TO PLAY CHUMP. PICK A LETTER");
 		hangMap.updateFam(uinput.nextLine().charAt(0));
 
-		/*
+		System.out.println("PICK ANOTHA ONE");
+		hangMap.cheat(uinput.nextLine().charAt(0));
+
+		/* put PICK ANOTHA ONE in the loop when ready
 		for (int i = 0; i < numGuesses; i++) {
-			System.out.println("PICK ANOTHA ONE");
-			hangMap.startCheatin(uinput.nextLine().charAt(0));
+			
 		}
 		*/
 	}
