@@ -20,7 +20,7 @@ public class VerboseCustomMap {
 
 	public void populate() {
 		try { 
-			Scanner scanner = new Scanner(new File("shordict.txt")); 
+			Scanner scanner = new Scanner(new File("shortdict.txt")); 
 			while (scanner.hasNextLine()) {
 				String str = scanner.nextLine().trim();
 				famArr = ( map.containsKey(str.length()) ) ? map.get(str.length()) : new ArrayList<String>();
