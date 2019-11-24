@@ -11,24 +11,25 @@ public class InsertSort {
 				list.set(j-1, tmp);
 				j--;
 			}
+			// System.out.println(list.subList(0, i+1).toString()); // intermediate output, currently sorted subarrs 
 		}
 	}
 
 	public static void main(String[] args) {
 		// ArrayList<> implementation
 		Integer[] tmp =  {0, 3, 2, 1, 55, 32, 4}; 
-		List<Integer> arr = new ArrayList<>(Arrays.asList(tmp));
-		arr = Arrays.asList(tmp);
+		List<Integer> integerList = new ArrayList<>();
+		integerList = Arrays.asList(tmp);
 
 		String[] temp = {"these", "are", "a", "few", "strings", "to", "sort"};
-		List<String> arr2 = new ArrayList<>(Arrays.asList(temp));
+		List<String> stringList = new ArrayList<>(Arrays.asList(temp));
 
-		System.out.println(arr.toString());
-		InsertSort.insertionSort(arr);
-		System.out.println(arr.toString());
+		System.out.println(integerList.toString());
+		InsertSort.insertionSort(integerList);
+		System.out.println(integerList.toString());
 
-		System.out.println("\n" + arr2.toString());
-		InsertSort.insertionSort(arr2);
-		System.out.println(arr2.toString());
+		System.out.println(stringList.toString());
+		InsertSort.insertionSort(stringList);
+		System.out.println(stringList.toString());
 	}
 }
