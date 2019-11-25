@@ -12,21 +12,18 @@ public class QuickSorter {
 				list.set(j-1, tmp);
 				j--;
 			}
-		}		
+		}
 	}
 
-	static <E extends Comparable<E>> void quickSort(List<E> list, int first, int last) {
+	static <E extends Comparable<E>> boolean quickSort(List<E> list, int first, int last) {
 		// Recursion: base case
-		if (last-first == 0) ; //TODO: do something
+		if (last-first == 0 || last-first == 1) return true;
 
-		// Partitioning: Take Median of (first, middle, last), swap to Front, then begin sort
+		// Partitioning: Take Median of {first, middle, last} as pivot, then swap pivot into first
 		int middle = (last-first)/2 + first;
 		List<E> medianList = new ArrayList<>(); 
 		medianList.add(list.get(first)); medianList.add(list.get(middle)); medianList.add(list.get(last));
-		System.out.println(medianList);
 		sortMedian(medianList);
-		System.out.println(medianList);
-
 		if (list.get(first).equals(medianList.get(1))) { 
 			// no swap necessary
 		} 
@@ -40,8 +37,27 @@ public class QuickSorter {
 			list.set(first, medianList.get(1));
 			list.set(last, temp);
 		}
-		System.out.println(list.get(first));
-		
+		int pivot = first;
+		// place Pivot in it's correct position. Then recursivly sort subarrays on either side of it.
+		int up = first;
+		int down = last;
+		do {
+			if (up != last || list.get(pivot).compareTo(list.get(up)) <= 0) { up++; }
+			if (down != first || list.get(pivot).compareTo(list.get(down)) > 0) { down--; }
+			System.out.println("Up:" + up + " Down:" + down);
+			if (up < down) {
+				E tmp = list.get(up);
+				list.set(up, list.get(down));
+				list.set(down, tmp);
+			}
+		} while (up < down);
+		E tmp = list.get(first);
+		list.set(first, list.get(down));
+		list.set(down, tmp);
+
+		pivot = down;
+		return quickSort(list, first, pivot-1) && quickSort(list, pivot+1, last);
+
 	}
 
 	public static void main(String[] args) {
