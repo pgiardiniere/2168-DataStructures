@@ -16,7 +16,6 @@ public class InsertSort {
 	}
 
 	public static void main(String[] args) {
-		// ArrayList<> implementation
 		Integer[] tmp =  {0, 3, 2, 1, 55, 32, 4}; 
 		List<Integer> integerList = new ArrayList<>();
 		integerList = Arrays.asList(tmp);

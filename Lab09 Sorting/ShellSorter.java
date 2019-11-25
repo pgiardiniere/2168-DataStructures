@@ -2,7 +2,7 @@ import java.util.*;
 
 public class ShellSorter {
 
-	static <E extends Comparable<E>> void ShellSort(List<E> list) {
+	static <E extends Comparable<E>> void shellSort(List<E> list) {
 		int gap = list.size() / 2;
 		while (gap > 0) {
 			// System.out.println("\ngap is:" + gap);
@@ -29,11 +29,11 @@ public class ShellSorter {
 		List<String> stringList = new ArrayList<>(Arrays.asList(temp));
 
 		System.out.println(integerList.toString());
-		ShellSorter.ShellSort(integerList);
+		ShellSorter.shellSort(integerList);
 		System.out.println(integerList.toString());
 
 		System.out.println(stringList.toString());
-		ShellSorter.ShellSort(stringList);
+		ShellSorter.shellSort(stringList);
 		System.out.println(stringList.toString());
 	} 
 }
