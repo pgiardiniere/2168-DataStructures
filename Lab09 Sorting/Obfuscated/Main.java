@@ -29,7 +29,7 @@ public class Main {
 		numSwaps = sortVar1.sort(list1);
 		postTime = System.nanoTime();
 
-		System.out.println("\nSort1 --- hundred elements");
+		System.out.println("\nSort1 --- 100 elements");
 		System.out.println("    time to sort in nanoseconds:\n        " + (postTime - initTime));
 		System.out.println("    numSwaps is:\n        " + numSwaps);
 
@@ -37,7 +37,7 @@ public class Main {
 		numSwaps = sortVar2.sort(list2);
 		postTime = System.nanoTime();
 
-		System.out.println("\nSort2 --- hundred elements");
+		System.out.println("\nSort2 --- 100 elements");
 		System.out.println("    time to sort in nanoseconds:\n        " + (postTime - initTime));
 		System.out.println("    numSwaps is:\n        " + numSwaps);
 
@@ -45,7 +45,7 @@ public class Main {
 		numSwaps = sortVar3.sort(list3);
 		postTime = System.nanoTime();
 
-		System.out.println("\nSort3 --- hundred elements");
+		System.out.println("\nSort3 --- 100 elements");
 		System.out.println("    time to sort in nanoseconds:\n        " + (postTime - initTime));
 		System.out.println("    numSwaps is:\n        " + numSwaps);
 
@@ -72,7 +72,7 @@ public class Main {
 		postTime = System.nanoTime();
 
 		System.out.println("\n--------------------------------------------------");
-		System.out.println("\nSort1 --- thousand elements");
+		System.out.println("\nSort1 --- 1000 elements");
 		System.out.println("    time to sort in nanoseconds:\n        " + (postTime - initTime));
 		System.out.println("    numSwaps is:\n        " + numSwaps);
 
@@ -80,7 +80,7 @@ public class Main {
 		numSwaps = sortVar2.sort(list2);
 		postTime = System.nanoTime();
 
-		System.out.println("\nSort2 --- thousand elements");
+		System.out.println("\nSort2 --- 1000 elements");
 		System.out.println("    time to sort in nanoseconds:\n        " + (postTime - initTime));
 		System.out.println("    numSwaps is:\n        " + numSwaps);
 
@@ -88,7 +88,7 @@ public class Main {
 		numSwaps = sortVar3.sort(list3);
 		postTime = System.nanoTime();
 
-		System.out.println("\nSort3 --- thousand elements");
+		System.out.println("\nSort3 --- 1000 elements");
 		System.out.println("    time to sort in nanoseconds:\n        " + (postTime - initTime));
 		System.out.println("    numSwaps is:\n        " + numSwaps);
 
@@ -115,7 +115,7 @@ public class Main {
 		postTime = System.nanoTime();
 
 		System.out.println("\n--------------------------------------------------");
-		System.out.println("\nSort1 --- tenThousand elements");
+		System.out.println("\nSort1 --- 10,000 elements");
 		System.out.println("    time to sort in nanoseconds:\n        " + (postTime - initTime));
 		System.out.println("    numSwaps is:\n        " + numSwaps);
 
@@ -123,7 +123,7 @@ public class Main {
 		numSwaps = sortVar2.sort(list2);
 		postTime = System.nanoTime();
 
-		System.out.println("\nSort2 --- tenThousand elements");
+		System.out.println("\nSort2 --- 10,000 elements");
 		System.out.println("    time to sort in nanoseconds:\n        " + (postTime - initTime));
 		System.out.println("    numSwaps is:\n        " + numSwaps);
 
@@ -131,7 +131,7 @@ public class Main {
 		numSwaps = sortVar3.sort(list3);
 		postTime = System.nanoTime();
 
-		System.out.println("\nSort3 --- tenThousand elements");
+		System.out.println("\nSort3 --- 10,000 elements");
 		System.out.println("    time to sort in nanoseconds:\n        " + (postTime - initTime));
 		System.out.println("    numSwaps is:\n        " + numSwaps);
 	}
