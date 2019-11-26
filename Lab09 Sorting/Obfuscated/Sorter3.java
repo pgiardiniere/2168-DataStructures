@@ -13,9 +13,9 @@ public class Sorter3 {
 		swapCount++;
 	}
 
-	<E extends Comparable<E>> void sort(List<E> list) { sort(list, 0, list.size()-1); }
+	<E extends Comparable<E>> Long sort(List<E> list) { return sort(list, 0, list.size()-1); }
 
-	<E extends Comparable<E>> void sort(List<E> list, int left, int right) {
+	<E extends Comparable<E>> Long sort(List<E> list, int left, int right) {
 		int pivIndex = partition(list, left, right);
 		if (left < pivIndex - 1) {
 			sort(list, left, pivIndex - 1);
@@ -23,6 +23,7 @@ public class Sorter3 {
 		if (pivIndex < right) {
 			sort(list, pivIndex, right);
 		}
+		return swapCount;
 	}
 
 	<E extends Comparable<E>> int partition(List<E> list, int left, int right) {

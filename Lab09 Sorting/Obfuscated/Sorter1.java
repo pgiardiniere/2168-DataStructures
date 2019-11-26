@@ -20,7 +20,7 @@ public class Sorter1 {
 				swap(list, j, j-1);
 				j--;
 			}
-			System.out.println(list.subList(0, i+1).toString() + "swaps: " + swapCount); // intermediate output, currently sorted subarrs 
+			// System.out.println(list.subList(0, i+1).toString() + "swaps: " + swapCount); // intermediate output, currently sorted subarrs 
 		}
 		return swapCount;
 	}
