@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class InsertSort {
+public class InsertSorter {
 	
 	static <E extends Comparable<E>> void insertionSort(List<E> list) {
 		for (int i = 1; i < list.size(); i++) {
@@ -24,11 +24,11 @@ public class InsertSort {
 		List<String> stringList = new ArrayList<>(Arrays.asList(temp));
 
 		System.out.println(integerList.toString());
-		InsertSort.insertionSort(integerList);
+		InsertSorter.insertionSort(integerList);
 		System.out.println(integerList.toString());
 
 		System.out.println(stringList.toString());
-		InsertSort.insertionSort(stringList);
+		InsertSorter.insertionSort(stringList);
 		System.out.println(stringList.toString());
 	}
 }

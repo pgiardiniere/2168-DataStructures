@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class GenRandQuickSort {
+public class Sorter3 {
 
 	static <E extends Comparable<E>> void swap(List<E> list, int i, int j) {
 		E tmp = list.get(i);
@@ -8,13 +8,13 @@ public class GenRandQuickSort {
 		list.set(j, tmp);
 	}
 
-	static <E extends Comparable<E>>void quickSort(List<E> list, int left, int right) {
+	static <E extends Comparable<E>>void sort(List<E> list, int left, int right) {
 		int pivIndex = partition(list, left, right);
 		if (left < pivIndex - 1) {
-			quickSort(list, left, pivIndex - 1);
+			sort(list, left, pivIndex - 1);
 		}
 		if (pivIndex < right) {
-			quickSort(list, pivIndex, right);
+			sort(list, pivIndex, right);
 		}
 	}
 
@@ -38,7 +38,7 @@ public class GenRandQuickSort {
 		
 		// System.out.println(list.toString());
 		for (int i = 0; i < list.size(); i++) System.out.print(list.get(i) + ", "); System.out.println();
-		GenRandQuickSort.quickSort(list, 0, list.size()-1);
+		Sorter3.sort(list, 0, list.size()-1);
 		for (int i = 0; i < list.size(); i++) System.out.print(list.get(i) + ", "); System.out.println();
 	}
 }

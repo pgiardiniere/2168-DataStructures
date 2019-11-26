@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class RandQuickSort {
+public class PrimitiveQuickSorter {
 
 	static void swap(int[] arr, int i, int j) {
 		int tmp = arr[i];
@@ -36,7 +36,7 @@ public class RandQuickSort {
 		int[] tmp = {13, 22, 3, 4, 4, 99, 100, 23, 3, 5, 7, 8, 9, 10, 0};	// {13, 22, 3, 4, 4, 99, 100, 23, 3, 5, 7, 8, 9, 10, 0}; 		// {13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
 
 		for (int i = 0; i < tmp.length; i++) System.out.print(tmp[i] + ", "); System.out.println();
-		RandQuickSort.quickSort(tmp, 0, tmp.length-1);
+		PrimitiveQuickSorter.quickSort(tmp, 0, tmp.length-1);
 		for (int i = 0; i < tmp.length; i++) System.out.print(tmp[i] + ", "); System.out.println();
 	}
 }

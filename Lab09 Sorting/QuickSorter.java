@@ -2,78 +2,43 @@ import java.util.*;
 
 public class QuickSorter {
 
-	static <E extends Comparable<E>> void sortMedian(List<E> list) {
-		// sort medianList by way of InsertionSort
-		for (int i = 1; i < list.size(); i++) {
-			int j = i;
-			while (j > 0 && list.get(j-1).compareTo(list.get(j)) > 0) {
-				E tmp = list.get(j);
-				list.set(j, list.get(j-1));
-				list.set(j-1, tmp);
-				j--;
-			}
+	static <E extends Comparable<E>> void swap(List<E> list, int i, int j) {
+		E tmp = list.get(i);
+		list.set(i, list.get(j));
+		list.set(j, tmp);
+	}
+
+	static <E extends Comparable<E>>void quickSort(List<E> list, int left, int right) {
+		int pivIndex = partition(list, left, right);
+		if (left < pivIndex - 1) {
+			quickSort(list, left, pivIndex - 1);
+		}
+		if (pivIndex < right) {
+			quickSort(list, pivIndex, right);
 		}
 	}
 
-	static <E extends Comparable<E>> boolean quickSort(List<E> list, int first, int last) {
-		// Recursion: base case
-		if (last-first == 0 || last-first == 1) return true;
-
-		// Partitioning: Take Median of {first, middle, last} as pivot, then swap pivot into first
-		int middle = (last-first)/2 + first;
-		List<E> medianList = new ArrayList<>(); 
-		medianList.add(list.get(first)); medianList.add(list.get(middle)); medianList.add(list.get(last));
-		sortMedian(medianList);
-		if (list.get(first).equals(medianList.get(1))) { 
-			// no swap necessary
-		} 
-		else if (list.get(middle).equals(medianList.get(1))) {
-			E temp = list.get(first);
-			list.set(first, medianList.get(1));
-			list.set(middle, temp);
-		}
-		else {
-			E temp = list.get(first);
-			list.set(first, medianList.get(1));
-			list.set(last, temp);
-		}
-		int pivot = first;
-		// place Pivot in it's correct position. Then recursivly sort subarrays on either side of it.
-		int up = first;
-		int down = last;
-		do {
-			if (up != last || list.get(pivot).compareTo(list.get(up)) <= 0) { up++; }
-			if (down != first || list.get(pivot).compareTo(list.get(down)) > 0) { down--; }
-			System.out.println("Up:" + up + " Down:" + down);
-			if (up < down) {
-				E tmp = list.get(up);
-				list.set(up, list.get(down));
-				list.set(down, tmp);
+	static <E extends Comparable<E>> int partition(List<E> list, int left, int right) {
+		E pivot = list.get((left + right)/2); 	// assign pivot val, taking index @ midpoint (so, random/arbitrary value)
+		while (left <= right) {
+			while (list.get(left).compareTo(pivot)  < 0) left++; 	// get (index of el on left) : (val @ index > pivot val)
+			while (list.get(right).compareTo(pivot) > 0) right--; 	// get (index of el on righ) : (val @ index < pivot val)
+			if (left <= right) { 									// Swap those two indices			
+				swap(list, left, right);
+				left++;
+				right--;
 			}
-		} while (up < down);
-		E tmp = list.get(first);
-		list.set(first, list.get(down));
-		list.set(down, tmp);
-
-		pivot = down;
-		return quickSort(list, first, pivot-1) && quickSort(list, pivot+1, last);
-
+		}
+		return left;
 	}
 
 	public static void main(String[] args) {
-		Integer[] tmp =  {13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-		List<Integer> integerList = new ArrayList<>();
-		integerList = Arrays.asList(tmp);
-
-		String[] temp = {"these", "are", "a", "few", "strings", "to", "sort"};
-		List<String> stringList = new ArrayList<>(Arrays.asList(temp));
-
-		System.out.println(integerList.toString());
-		QuickSorter.quickSort(integerList, 0, integerList.size()-1);
-		System.out.println(integerList.toString());
-
-		System.out.println(stringList.toString());
-		QuickSorter.quickSort(stringList, 0, stringList.size()-1);
-		System.out.println(stringList.toString());
+		Integer[] tmp = {13, 22, 3, 4, 4, 99, 100, 23, 3, 5, 7, 8, 9, 10, 0}; 		// {13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+		List<Integer> list = Arrays.asList(tmp);
+		
+		// System.out.println(list.toString());
+		for (int i = 0; i < list.size(); i++) System.out.print(list.get(i) + ", "); System.out.println();
+		QuickSorter.quickSort(list, 0, list.size()-1);
+		for (int i = 0; i < list.size(); i++) System.out.print(list.get(i) + ", "); System.out.println();
 	}
 }

@@ -1,0 +1,5 @@
+Notes.txt
+
+	Sorter1 == Insertion Sort
+	Sorter2 == Shell 	 Sort
+	Sorter3 == Quick 	 Sort
