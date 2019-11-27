@@ -3,7 +3,11 @@ import java.util.*;
 public class Sorter2 {
 
 	private Long swapCount;
-	Sorter2() { swapCount = (long) 0; }
+	private Long compCount;
+	Sorter2() { 
+		swapCount = (long) 0; 
+		compCount = (long) 0;
+	}
 
 	<E extends Comparable<E>> void swap(List<E> list, int i, int j) {
 		E tmp = list.get(i);
@@ -13,7 +17,7 @@ public class Sorter2 {
 		swapCount++;
 	}
 
-	<E extends Comparable<E>> Long sort(List<E> list) {
+	<E extends Comparable<E>> Long[] sort(List<E> list) {
 		int gap = list.size() / 2;
 		while (gap > 0) {
 			// System.out.println("\ngap is:" + gap);
@@ -28,7 +32,8 @@ public class Sorter2 {
 			if (gap == 2) gap = 1;
 			else gap = (int)(gap/2.2);
 		}
-		return swapCount;
+		Long[] counts = {swapCount, compCount};
+		return counts;
 	}
 
 	public static void main(String[] args) {
@@ -42,7 +47,7 @@ public class Sorter2 {
 		// List<String> stringList = new ArrayList<>(Arrays.asList(temp));
 
 		System.out.println(integerList.toString());
-		Long staticSwap = sortVar.sort(integerList);
+		Long[] staticSwap = sortVar.sort(integerList);
 		System.out.println(integerList.toString());
 
 		System.out.println("numSwaps is:" + staticSwap);

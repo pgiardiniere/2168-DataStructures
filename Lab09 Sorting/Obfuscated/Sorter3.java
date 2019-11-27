@@ -3,7 +3,11 @@ import java.util.*;
 public class Sorter3 {
 
 	private Long swapCount;
-	Sorter3() { swapCount = (long) 0; }
+	private Long compCount;
+	Sorter3() { 
+		swapCount = (long) 0; 
+		compCount = (long) 0;
+	}
 
 	<E extends Comparable<E>> void swap(List<E> list, int i, int j) {
 		E tmp = list.get(i);
@@ -13,9 +17,9 @@ public class Sorter3 {
 		swapCount++;
 	}
 
-	<E extends Comparable<E>> Long sort(List<E> list) { return sort(list, 0, list.size()-1); }
+	<E extends Comparable<E>> Long[] sort(List<E> list) { return sort(list, 0, list.size()-1); }
 
-	<E extends Comparable<E>> Long sort(List<E> list, int left, int right) {
+	<E extends Comparable<E>> Long[] sort(List<E> list, int left, int right) {
 		int pivIndex = partition(list, left, right);
 		if (left < pivIndex - 1) {
 			sort(list, left, pivIndex - 1);
@@ -23,7 +27,8 @@ public class Sorter3 {
 		if (pivIndex < right) {
 			sort(list, pivIndex, right);
 		}
-		return swapCount;
+		Long[] counts = {swapCount, compCount};
+		return counts;
 	}
 
 	<E extends Comparable<E>> int partition(List<E> list, int left, int right) {
