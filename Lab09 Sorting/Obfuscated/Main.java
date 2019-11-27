@@ -33,31 +33,34 @@ public class Main {
 
 		long initTime;
 		long postTime;
-		long numSwaps;
+		Long[] counts;
 
 		initTime = System.nanoTime();
-		numSwaps = sortVar1.sort(list1);
+		counts = sortVar1.sort(list1);
 		postTime = System.nanoTime();
 
 		System.out.println("\nSort1 --- 100 elements");
 		System.out.println("    time to sort in nanoseconds:\n        " + (postTime - initTime));
-		System.out.println("    numSwaps is:\n        " + numSwaps);
+		System.out.println("    numSwaps is:\n        " + counts[0]);
+		System.out.println("    numComps is:\n        " + counts[1]);
 
 		initTime = System.nanoTime();
-		numSwaps = sortVar2.sort(list2);
+		counts = sortVar2.sort(list2);
 		postTime = System.nanoTime();
 
 		System.out.println("\nSort2 --- 100 elements");
 		System.out.println("    time to sort in nanoseconds:\n        " + (postTime - initTime));
-		System.out.println("    numSwaps is:\n        " + numSwaps);
+		System.out.println("    numSwaps is:\n        " + counts[0]);
+		System.out.println("    numComps is:\n        " + counts[1]);
 
 		initTime = System.nanoTime();
-		numSwaps = sortVar3.sort(list3);
+		counts = sortVar3.sort(list3);
 		postTime = System.nanoTime();
 
 		System.out.println("\nSort3 --- 100 elements");
 		System.out.println("    time to sort in nanoseconds:\n        " + (postTime - initTime));
-		System.out.println("    numSwaps is:\n        " + numSwaps);
+		System.out.println("    numSwaps is:\n        " + counts[0]);
+		System.out.println("    numComps is:\n        " + counts[1]);
 
 		// ---------------------------------------------------------------------------
 		// Make list of 1000 elements, randomly generated Doubles. Run & Output tests
@@ -78,29 +81,32 @@ public class Main {
 		for (int i = 0; i < 1000; i++) { list3.add(thousand.get(i)); }
 
 		initTime = System.nanoTime();
-		numSwaps = sortVar1.sort(list1);
+		counts = sortVar1.sort(list1);
 		postTime = System.nanoTime();
 
 		System.out.println("\n--------------------------------------------------");
 		System.out.println("\nSort1 --- 1000 elements");
 		System.out.println("    time to sort in nanoseconds:\n        " + (postTime - initTime));
-		System.out.println("    numSwaps is:\n        " + numSwaps);
+		System.out.println("    numSwaps is:\n        " + counts[0]);
+		System.out.println("    numComps is:\n        " + counts[1]);
 
 		initTime = System.nanoTime();
-		numSwaps = sortVar2.sort(list2);
+		counts = sortVar2.sort(list2);
 		postTime = System.nanoTime();
 
 		System.out.println("\nSort2 --- 1000 elements");
 		System.out.println("    time to sort in nanoseconds:\n        " + (postTime - initTime));
-		System.out.println("    numSwaps is:\n        " + numSwaps);
+		System.out.println("    numSwaps is:\n        " + counts[0]);
+		System.out.println("    numComps is:\n        " + counts[1]);
 
 		initTime = System.nanoTime();
-		numSwaps = sortVar3.sort(list3);
+		counts = sortVar3.sort(list3);
 		postTime = System.nanoTime();
 
 		System.out.println("\nSort3 --- 1000 elements");
 		System.out.println("    time to sort in nanoseconds:\n        " + (postTime - initTime));
-		System.out.println("    numSwaps is:\n        " + numSwaps);
+		System.out.println("    numSwaps is:\n        " + counts[0]);
+		System.out.println("    numComps is:\n        " + counts[1]);
 
 		// ---------------------------------------------------------------------------
 		// Make list of 10000 elements, randomly generated Doubles. Run & Output tests
@@ -121,35 +127,38 @@ public class Main {
 		for (int i = 0; i < 10000; i++) { list3.add(tenThousand.get(i)); }
 
 		initTime = System.nanoTime();
-		numSwaps = sortVar1.sort(list1);
+		counts = sortVar1.sort(list1);
 		postTime = System.nanoTime();
 
 		System.out.println("\n--------------------------------------------------");
 		System.out.println("\nSort1 --- 10,000 elements");
 		System.out.println("    time to sort in nanoseconds:\n        " + (postTime - initTime));
-		System.out.println("    numSwaps is:\n        " + numSwaps);
+		System.out.println("    numSwaps is:\n        " + counts[0]);
+		System.out.println("    numComps is:\n        " + counts[1]);
 
 		initTime = System.nanoTime();
-		numSwaps = sortVar2.sort(list2);
+		counts = sortVar2.sort(list2);
 		postTime = System.nanoTime();
 
 		System.out.println("\nSort2 --- 10,000 elements");
 		System.out.println("    time to sort in nanoseconds:\n        " + (postTime - initTime));
-		System.out.println("    numSwaps is:\n        " + numSwaps);
+		System.out.println("    numSwaps is:\n        " + counts[0]);
+		System.out.println("    numComps is:\n        " + counts[1]);
 
 		initTime = System.nanoTime();
-		numSwaps = sortVar3.sort(list3);
+		counts = sortVar3.sort(list3);
 		postTime = System.nanoTime();
 
 		System.out.println("\nSort3 --- 10,000 elements");
 		System.out.println("    time to sort in nanoseconds:\n        " + (postTime - initTime));
-		System.out.println("    numSwaps is:\n        " + numSwaps);
+		System.out.println("    numSwaps is:\n        " + counts[0]);
+		System.out.println("    numComps is:\n        " + counts[1]);
 	}
 
 	static void csvOut() throws FileNotFoundException {
 		PrintStream out = new PrintStream(new File("out.csv"));
 		System.setOut(out);
-		System.out.println("Datapoints: below each \"Sort X results:\", First row is time to sort in nanoseconds. Second row is numSwaps\n");
+		System.out.println("Datapoints: below each \"Sort X results:\", First row is time to sort in nanoseconds. Second row is counts {Swaps ; Comparisons} \n");
 
 		// ---------------------------------------------------------------------------
 		// Make list of 100 elements, randomly generated Doubles. Run & Output tests
@@ -172,31 +181,31 @@ public class Main {
 
 		long initTime;
 		long postTime;
-		long numSwaps;
+		Long[] counts;
 
 		initTime = System.nanoTime();
-		numSwaps = sortVar1.sort(list1);
+		counts = sortVar1.sort(list1);
 		postTime = System.nanoTime();
 
 		System.out.println("Sort 1 results:");
 		System.out.println(postTime - initTime);
-		System.out.println(numSwaps);
+		System.out.println(counts[0] + "," + counts[1]);
 
 		initTime = System.nanoTime();
-		numSwaps = sortVar2.sort(list2);
+		counts = sortVar2.sort(list2);
 		postTime = System.nanoTime();
 
 		System.out.println("Sort 2 results:");
 		System.out.println(postTime - initTime);
-		System.out.println(numSwaps);
+		System.out.println(counts[0] + "," + counts[1]);
 
 		initTime = System.nanoTime();
-		numSwaps = sortVar3.sort(list3);
+		counts = sortVar3.sort(list3);
 		postTime = System.nanoTime();
 
 		System.out.println("Sort 3 results:");
 		System.out.println(postTime - initTime);
-		System.out.println(numSwaps);
+		System.out.println(counts[0] + "," + counts[1]);
 
 		System.out.println("1000 element list");
 		// ---------------------------------------------------------------------------
@@ -218,28 +227,28 @@ public class Main {
 		for (int i = 0; i < 1000; i++) { list3.add(thousand.get(i)); }
 
 		initTime = System.nanoTime();
-		numSwaps = sortVar1.sort(list1);
+		counts = sortVar1.sort(list1);
 		postTime = System.nanoTime();
 
 		System.out.println("Sort 1 results:");
 		System.out.println(postTime - initTime);
-		System.out.println(numSwaps);
+		System.out.println(counts[0] + "," + counts[1]);
 
 		initTime = System.nanoTime();
-		numSwaps = sortVar2.sort(list2);
+		counts = sortVar2.sort(list2);
 		postTime = System.nanoTime();
 
 		System.out.println("Sort 2 results:");
 		System.out.println(postTime - initTime);
-		System.out.println(numSwaps);
+		System.out.println(counts[0] + "," + counts[1]);
 
 		initTime = System.nanoTime();
-		numSwaps = sortVar3.sort(list3);
+		counts = sortVar3.sort(list3);
 		postTime = System.nanoTime();
 
 		System.out.println("Sort 3 results:");
 		System.out.println(postTime - initTime);
-		System.out.println(numSwaps);
+		System.out.println(counts[0] + "," + counts[1]);
 
 		System.out.println("10000 element list");
 		// ---------------------------------------------------------------------------
@@ -261,27 +270,27 @@ public class Main {
 		for (int i = 0; i < 10000; i++) { list3.add(tenThousand.get(i)); }
 
 		initTime = System.nanoTime();
-		numSwaps = sortVar1.sort(list1);
+		counts = sortVar1.sort(list1);
 		postTime = System.nanoTime();
 
 		System.out.println("Sort 1 results:");
 		System.out.println(postTime - initTime);
-		System.out.println(numSwaps);
+		System.out.println(counts[0] + "," + counts[1]);
 
 		initTime = System.nanoTime();
-		numSwaps = sortVar2.sort(list2);
+		counts = sortVar2.sort(list2);
 		postTime = System.nanoTime();
 
 		System.out.println("Sort 2 results:");
 		System.out.println(postTime - initTime);
-		System.out.println(numSwaps);
+		System.out.println(counts[0] + "," + counts[1]);
 
 		initTime = System.nanoTime();
-		numSwaps = sortVar3.sort(list3);
+		counts = sortVar3.sort(list3);
 		postTime = System.nanoTime();
 
 		System.out.println("Sort 3 results:");
 		System.out.println(postTime - initTime);
-		System.out.println(numSwaps);
+		System.out.println(counts[0] + "," + counts[1]);
 	}
 }

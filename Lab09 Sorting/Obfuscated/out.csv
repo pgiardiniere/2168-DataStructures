@@ -1,32 +1,32 @@
-Datapoints: below each "Sort X results:", First row is time to sort in nanoseconds. Second row is numSwaps
-
-100 element list
-Sort 1 results:
-1508900
-2396
-Sort 2 results:
-344100
-514
-Sort 3 results:
-91500
-189
-1000 element list
-Sort 1 results:
-12709000
-248615
-Sort 2 results:
-1233900
-6719
-Sort 3 results:
-720400
-2696
-10000 element list
-Sort 1 results:
-293232100
-25015913
-Sort 2 results:
-8565900
-102155
-Sort 3 results:
-3954900
-34854
+"Datapoints: below each ""Sort X results:""", First row is time to sort in nanoseconds. Second row is counts {Swaps ; Comparisons} 
+,
+100 element list,
+Sort 1 results:,
+1862500,
+2516,2615
+Sort 2 results:,
+251500,
+596,1014
+Sort 3 results:,
+173000,
+193,1144
+1000 element list,
+Sort 1 results:,
+17460200,
+249612,250611
+Sort 2 results:,
+3293800,
+6660,13758
+Sort 3 results:,
+1487600,
+2705,15083
+10000 element list,
+Sort 1 results:,
+366628700,
+24801161,24811160
+Sort 2 results:,
+11247000,
+103127,203982
+Sort 3 results:,
+5557200,
+34829,196185

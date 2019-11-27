@@ -26,7 +26,7 @@ public class Sorter1 {
 				j--;
 			}
 			compCount++;
-			System.out.println(list.subList(0, i+1).toString() + "swaps: " + swapCount + " comps: " + compCount); // intermediate output, currently sorted subarrs 
+			// System.out.println(list.subList(0, i+1).toString() + "swaps: " + swapCount + " comps: " + compCount); // intermediate output, currently sorted subarrs 
 		}
 		Long[] counts = {swapCount, compCount};
 		return counts;
