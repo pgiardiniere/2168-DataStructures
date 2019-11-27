@@ -27,10 +27,13 @@ public class Sorter2 {
 					swap(list, nextPos, nextPos-gap);   	// System.out.println("Swap Indices:" + (nextPos-gap) + "-" +  nextPos + " of Values: " );
 													 		// System.out.println("{0, 1, 2, 3, 4, 5, 6, 7}" + "\n" + list.toString());
 					nextPos -= gap;
+					compCount++;
 				}
+				compCount++;
 			}
 			if (gap == 2) gap = 1;
 			else gap = (int)(gap/2.2);
+			compCount++;
 		}
 		Long[] counts = {swapCount, compCount};
 		return counts;
@@ -47,10 +50,10 @@ public class Sorter2 {
 		// List<String> stringList = new ArrayList<>(Arrays.asList(temp));
 
 		System.out.println(integerList.toString());
-		Long[] staticSwap = sortVar.sort(integerList);
+		Long[] counts = sortVar.sort(integerList);
 		System.out.println(integerList.toString());
 
-		System.out.println("numSwaps is:" + staticSwap);
+		System.out.println("swapCount is:" + counts[0] + " and compCount is:" + counts[1]);
 
 		// System.out.println(stringList.toString());
 		// sortVar.sort(stringList);

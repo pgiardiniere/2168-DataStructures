@@ -22,9 +22,11 @@ public class Sorter3 {
 	<E extends Comparable<E>> Long[] sort(List<E> list, int left, int right) {
 		int pivIndex = partition(list, left, right);
 		if (left < pivIndex - 1) {
+			compCount++;
 			sort(list, left, pivIndex - 1);
 		}
 		if (pivIndex < right) {
+			compCount++;
 			sort(list, pivIndex, right);
 		}
 		Long[] counts = {swapCount, compCount};
@@ -34,14 +36,17 @@ public class Sorter3 {
 	<E extends Comparable<E>> int partition(List<E> list, int left, int right) {
 		E pivot = list.get((left + right)/2); 	// assign pivot val, taking index @ midpoint (so, random/arbitrary value)
 		while (left <= right) {
-			while (list.get(left).compareTo(pivot)  < 0) left++; 	// get (index of el on left) : (val @ index > pivot val)
-			while (list.get(right).compareTo(pivot) > 0) right--; 	// get (index of el on righ) : (val @ index < pivot val)
+			compCount++;
+			while (list.get(left).compareTo(pivot)  < 0) { left++; compCount++; } 	// get (index of el on left) : (val @ index > pivot val)
+			while (list.get(right).compareTo(pivot) > 0) { right--; compCount++; } 	// get (index of el on righ) : (val @ index < pivot val)
 			if (left <= right) { 									// Swap those two indices			
+				compCount++;
 				swap(list, left, right);
 				left++;
 				right--;
 			}
 		}
+		compCount++;
 		return left;
 	}
 
@@ -53,7 +58,9 @@ public class Sorter3 {
 		
 		// System.out.println(list.toString());
 		for (int i = 0; i < list.size(); i++) System.out.print(list.get(i) + ", "); System.out.println();
-		sortVar.sort(list);
+		Long[] counts = sortVar.sort(list);
 		for (int i = 0; i < list.size(); i++) System.out.print(list.get(i) + ", "); System.out.println();
+
+		System.out.println("swapCount is:" + counts[0] + " and compCount is:" + counts[1]);
 	}
 }
